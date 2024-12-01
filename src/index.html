@@ -15,6 +15,22 @@
         z-index: -1;
         background: linear-gradient(45deg, #b0c1d3, #91aecd);
     }
+
+    #typewriter {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      display: inline-block;
+    }
+
+    #cursor {
+        animation: blink 0.8s steps(1) infinite;
+    }
+
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
   </style>
 </head>
 <body>
@@ -22,28 +38,76 @@
     <h3>Davos, 2025</h3>
     <h1>Leading Beyond Boundaries</h1>
     <h4><em>Empowering innovation and technology for a better tomorrow</em></h4>
-    <h4>2025 Focus: HealthTech, PrivacyTech, and Generative AI</h4>
   </header>
   <nav>
-    <a chref="#overview">Overview</a>
+    <a href="#overview">Overview</a>
     <a href="#agenda">Agenda</a>
-    <a href="/2024">See 2024</a>
+    <a href="/2024" style="white-space: nowrap;">See 2024</a>
   </nav>
   <main>    
     <section id="overview">
-      <h2>Overview</h2>
+     <h2>Davos 2025: <span id="typewriter"></span><span id="cursor">|</span></h2>
       <p>
-        This year, our primary objective is to spark an authentic dialogue around HealthTech, PrivacyTech, and Generative AI. 
-        We aim to foster an organic conversation that not only addresses critical issues but also unveils innovative solutions, 
-        propelling us toward a standardized global AI landscape. The event is positioned to revolutionize the field by tackling 
-        pressing societal issues and steering the conversation towards impactful change.
-        <br> <br>
-        <b>Social Event:</b> In partnership with <a href="https://www.investindia.gov.in/"></a>Invest India, Ministry of Commerce and Industry, Government of India, we are also organizing 
-        a social event to complement our HealthTech, PrivacyTech and Generative AI roundtables. We warmly invite you to join our social gathering.
-        <b>Venue</b>: 15th January 2024, 5:45-6:30 PM, India Engagement Center, Promenade 63, Davos, Switzerland.
+        Against the historic backdrop of the Wisdom House, where centuries of spiritual reflection meet cutting-edge discourse, 
+        Leading Beyond Boundaries brings together the world's foremost thinkers, innovators, and decision-makers to chart 
+        the course of humanity's technological future.
       </p>
+          <p>
+        This exclusive gathering, held alongside the World Economic Forum, creates an intimate space for meaningful dialogue and 
+        breakthrough insights on the most pressing challenges of our time.
+      </p>
+    
+      <h3>Four Pillars of Discussion</h3>
+      <ul>
+        <li>
+          <strong>The Evolution of AI Agents</strong><br>
+          Explore how autonomous AI systems are transforming business, governance, and society. Join industry pioneers and ethical 
+          leaders as they examine the possibilities and responsibilities of creating truly intelligent systems that serve humanity's 
+          best interests.
+        </li>
+        <li>
+          <strong>Security in an Interconnected World</strong><br>
+          As our digital and physical realms become increasingly intertwined, traditional security paradigms no longer suffice. 
+          Discover new frameworks for protecting institutions, individuals, and ideas in an age of unprecedented connectivity.
+        </li>
+        <li>
+          <strong>Law in the Age of AI</strong><br>
+          How do we govern technologies that evolve faster than legislation? Leading legal minds and tech innovators come together 
+          to envision new legal frameworks that protect human rights while fostering innovation.
+        </li>
+        <li>
+          <strong>The Future of Personalized Health</strong><br>
+          From genomics to AI-driven diagnostics, healthcare is becoming uniquely personal. Explore how emerging technologies are 
+          revolutionizing medicine and what this means for global health equity.
+        </li>
+      </ul>
+    
+      <h3>Why the Wisdom House?</h3>
+      <p>
+        In choosing this historic church as our venue, we recognize that the greatest technological advances must be guided by 
+        timeless human wisdom. The sacred architecture and contemplative atmosphere of the Wisdom House provide an inspiring setting 
+        for discussions that will shape our collective future.
+      </p>
+    
+      <h3>Join Us in Shaping Tomorrow</h3>
+      <p>
+        This invitation-only gathering offers:
+      </p>
+      <ul>
+        <li>Intimate roundtable discussions with global thought leaders</li>
+        <li>Open forums for dynamic knowledge exchange</li>
+        <li>Networking opportunities with decision-makers and innovators</li>
+        <li>Concrete action plans for implementing positive change</li>
+      </ul>
+      <p>
+        Together, we'll move beyond traditional boundaries to forge new paths toward a more equitable, secure, and innovative future.
+      </p>
+    
+      <p>
+        <em>Leading Beyond Boundaries is an independent event held in conjunction with the World Economic Forum Annual Meeting 2025.</em>
+      </p>      
     </section>
-    <section id="people">
+    <!-- <section id="people">
         <h2>Panelists</h2>
         <div class="speaker-grid">
             <div class="speaker-item">
@@ -435,7 +499,7 @@
         If you are in Davos and interested in attending our roundtables as a listener, please <a href="mailto:rmahari@mit.edu">contact organizers</a>.
         </p>
 
-    </section>
+    </section> -->
     <section id="agenda">
         <h2>Agenda</h2>
         
@@ -510,19 +574,16 @@
     <section id="partners">
         <h2>Partners</h2>
         <ul style="padding-right: 8rem;">
-            <li class="partner"><a href="https://www.media.mit.edu/">MIT Media Lab</a><a href="http://cameraculture.media.mit.edu/">Camera Culture Group</a></li>
+            <!-- <li class="partner"><a href="https://www.media.mit.edu/">MIT Media Lab</a>,<a href="http://cameraculture.media.mit.edu/">Camera Culture Group</a></li> -->
             <li class="partner"><a href="https://connection.mit.edu/">MIT Connection Science</a></li>
-            <li class="partner"><a href="https://www.aihousedavos.com/">AI House Davos</a></li>
-            <li class="partner"><a href="https://www.lunit.io/en">Lunit Inc.</a></li>
-            <li class="partner"><a href="https://ai.ethz.ch/">ETH AI Center</a></li>
-            <li class="partner"><a href="https://www.swisscom.ch/">Swisscom</a></li>
-            <li class="partner"><a href="https://www.merantix.com/">Merantix</a></li>
-            <li class="partner"><a href="https://www.investindia.gov.in/">Invest India, Ministry of Commerce and Industry, Government of India</a></li>
+            <li class="partner"><a href="https://digitaleconomy.stanford.edu">Stanford Digital Economy Lab</a></li>
+            <li class="partner"><a href="https://broadlights.org/wisdomhousedavos/">Wisdom House Davos</a></li>
           </ul>
+          <p></p>We're actively looking for more partners. If you are interested in partnering with us, please <a href="mailto:rmahari@mit.edu">contact Robert Mahari</a>.</p>
     </section>
   </main>
   <footer>
-    <p>&copy; 2024 Leading Beyond Boundaries | <a href="mailto:rmahari@mit.edu">Contact organizers</a></p>
+    <p>&copy; 2025 Leading Beyond Boundaries | <a href="mailto:rmahari@mit.edu">Contact organizers</a></p>
   </footer>
   <canvas id="particles-bg"></canvas>
   <script>
@@ -608,6 +669,21 @@
     }
 
     animate();
+  </script>
+  <script>
+    const text = "Where Innovation Meets Human Purpose"
+    const typewriterElement = document.getElementById('typewriter');
+    let index = 0;
+
+    function typeWriter() {
+        if (index < text.length) {
+            typewriterElement.textContent += text[index];
+            index++;
+            setTimeout(typeWriter, 70); // Adjust speed (in ms)
+        }
+    }
+
+    typeWriter();
   </script>
 </body>
 </html>
