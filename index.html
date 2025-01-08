@@ -62,12 +62,12 @@
 
     /* Section cards */
     section {
-        padding: 1rem;
+      padding: 1rem;
     }
 
     section h2 {
       margin-bottom: 1rem;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
 
     section p {
@@ -78,7 +78,7 @@
     }
 
     .card {
-     background: var(--card-color);
+      background: var(--card-color);
       border-radius: 8px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
@@ -101,12 +101,12 @@
     }
 
     .lumacard h3 {
-      font-size: 1rem;
+      font-size: 1rem; /* slightly bigger than before */
       margin-bottom: 1rem;
     }
 
     .lumacard p {
-      font-size: 0.8rem;
+      font-size: 0.9rem; /* slightly bigger than before */
       margin-bottom: 1rem;
       color: #A9AAAA;
     }
@@ -127,7 +127,6 @@
       transition: background-color 0.2s;
     }
 
-
     .partner-logo {
         height: 100px;
         width: auto;
@@ -145,74 +144,86 @@
         margin-bottom: 1.5rem;
       }
       section h2 {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
+      }
+      .lumacard h3 {
+        font-size: 1rem; /* no further shrink */
+      }
+      .lumacard p {
+        font-size: 0.9rem;
       }
     }
   </style>
+
   <style>
-      /* Hero Section Styles */
-      .hero {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 8px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        gap: 2rem;
-        flex-wrap: wrap;
+    /* Hero Section Styles */
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      gap: 2rem;
+      flex-wrap: wrap; /* Ensures wrapping on smaller screens */
     }
 
     /* Left side text */
     .hero-text {
-        flex: 1 1 100%;
-        width: 300px;
+      flex: 1 1 300px; /* Allows .hero-text to scale down */
+      min-width: 0;    /* Let it shrink below 300px if needed */
     }
 
     .hero-text h1 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
     }
 
     .hero-text h2 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
     }
 
     .hero-text h4 {
-    font-size: 1rem;
-    margin-bottom: 1rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
     }
 
     .hero-text button {
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 4px;
-    background: var(--light-accent);
-    /* color: #fff; */
-    cursor: pointer;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      background: var(--light-accent);
+      cursor: pointer;
     }
 
-    /* Container sizing & background */
+    /* Hero image container */
     .hero-image {
-        position: relative;
-        width: 300px;        
-        height: 300px;
-        margin: auto;
-        background: linear-gradient(to bottom, var(--light-accent), #ffffff);
-        overflow: hidden;
-        border-radius: 50%; 
-        flex-shrink: 0;
+      position: relative;
+      flex: 1 1 300px;
+      min-width: 0; /* Let it scale below 300px if needed */
+      max-width: 400px; /* optional: keep the circle from getting too large */
+      height: auto; /* remove forced height for more flexibility */
+      margin: auto;
+      aspect-ratio: 1/1; /* maintain square shape */
+      background: linear-gradient(to bottom, var(--light-accent), #ffffff);
+      overflow: hidden;
+      border-radius: 50%; 
+      flex-shrink: 0;
     }
 
+    /* Media Query for Hero on small screens */
     @media (max-width: 600px) {
       .hero {
-          flex-direction: column; /* Stack items vertically */
+        flex-direction: column;
+        align-items: center;
       }
       .hero-text, .hero-image {
-          flex-basis: 100%; /* Ensure both take full width */
+        flex-basis: 100%;
+        max-width: 100%;
       }
-  }
+    }
 
     /* Church bobbing animation */
     .church {
@@ -225,36 +236,37 @@
     }
 
     @keyframes bob {
-    0%, 100% {
+      0%, 100% {
         transform: translate(-50%, 0);
-    }
-    50% {
+      }
+      50% {
         transform: translate(-50%, -10px);
-    }
+      }
     }
 
     /* Snowflake elements (using a background image for simplicity) */
     .snowflake {
-    position: absolute;
-    top: -50px;
-    width: 30px;
-    height: 30px;
-    background: url('assets/img/snowflake.png') no-repeat center/cover;
-    animation: snowfall 5s linear infinite;
-    opacity: 0.8;
+      position: absolute;
+      top: -50px;
+      width: 30px;
+      height: 30px;
+      background: url('assets/img/snowflake.png') no-repeat center/cover;
+      animation: snowfall 5s linear infinite;
+      opacity: 0.8;
     }
 
     @keyframes snowfall {
-    0% {
+      0% {
         transform: translateY(0) rotate(0deg);
         opacity: 1;
-    }
-    100% {
+      }
+      100% {
         transform: translateY(450px) rotate(360deg);
         opacity: 0;
-    }
+      }
     }
   </style>
+
   <style>
     #particles-bg {
       position: fixed;
@@ -264,25 +276,26 @@
       height: 100%;
       z-index: -1;
       background: linear-gradient(45deg, #b0c1d341, #91aecd4e);
-  }
+    }
 
-  #typewriter {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    display: inline-block;
-    font-size: inherit;
-  }
+    /* Make the typewriter text scale nicely */
+    #typewriter {
+      display: inline-block;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-size: clamp(1rem, 4vw, 1.3rem); /* Prevents it from getting too small/large */
+    }
 
-  #cursor {
+    #cursor {
       animation: blink 0.8s steps(1) infinite;
-  }
+    }
 
-  @keyframes blink {
+    @keyframes blink {
       50% {
-          opacity: 0;
+        opacity: 0;
       }
-  }
-</style>
+    }
+  </style>
 </head>
 <body>
     <!-- Nav -->
@@ -313,19 +326,19 @@
             <div class="snowflake" style="left: 50%; animation-duration: 6s; animation-delay: 2s;"></div>
             <div class="snowflake" style="left: 70%; animation-duration: 8s; animation-delay: 3s;"></div>
             <div class="snowflake" style="left: 90%; animation-duration: 9s; animation-delay: 4s;"></div>
-          </div>
-      </section>
+        </div>
+    </section>
 
     <section id="overview">
         <h2>Davos 2025: <span id="typewriter"></span><span id="cursor">|</span></h2>
-            <p>
-            Against the historic backdrop of the Wisdom House, where centuries of spiritual reflection meet cutting-edge discourse, 
-            Leading Beyond Boundaries brings together the world's foremost thinkers, innovators, and decision-makers to chart 
-            the course of humanity's technological future.
+        <p>
+          Against the historic backdrop of the Wisdom House, where centuries of spiritual reflection meet cutting-edge discourse, 
+          Leading Beyond Boundaries brings together the world's foremost thinkers, innovators, and decision-makers to chart 
+          the course of humanity's technological future.
         </p>
         <p>
-            This gathering, held alongside the World Economic Forum, creates an intimate space for meaningful dialogue and 
-            breakthrough insights on the most pressing challenges of our time.
+          This gathering, held alongside the World Economic Forum, creates an intimate space for meaningful dialogue and 
+          breakthrough insights on the most pressing challenges of our time.
         </p>
     </section>
 
@@ -334,75 +347,65 @@
       <p>
         Several events will be open to the public and can be registered through Luma.
       </p>
-
-        <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
-            <iframe
-                src="https://lu.ma/embed/calendar/cal-kmWOFmo32ZSHqQG/events"
-                frameborder="0"
-                style="width:100%; min-height:600px; border: 1px solid #bfcbda88; border-radius: 15px;"
-                allowfullscreen=""
-                aria-hidden="false"
-                tabindex="0"
-            ></iframe>
-        </div>
+      <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
+        <iframe
+          src="https://lu.ma/embed/calendar/cal-kmWOFmo32ZSHqQG/events"
+          frameborder="0"
+          style="width:100%; min-height:600px; border: 1px solid #bfcbda88; border-radius: 15px;"
+          allowfullscreen=""
+          aria-hidden="false"
+          tabindex="0"
+        ></iframe>
+      </div>
     </section>
 
     <section id="themes">
-        <h2>Key Discussion Themes</h2>
-        <p> 
-            This year's themes are focused on the intersection of technology and human purpose. Each day will have a closed-door roundtable discussion, and a public panel summarizing the key insights. Click the themes to see one-pagers for each topic.
-        </p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
-            <a class="lumacard" href="/assets/files/LBB25_Law.pdf">
-                <h3>Law in the Age of AI</h3>
-                <p>
-                Exploring new frameworks for AI oversight and regulation that balance innovation with social responsibility and ethical considerations.
-                </p>
-            </a>
-            <a class="lumacard" href="/assets/files/LBB25_Agentic_AI.pdf">
-                <h3>Privacy and the Rise of Agentic AI</h3>
-                <p>
-                Examining how AI agents and digital twins can enhance individual and community capabilities while preserving privacy and personal autonomy.
-                </p>
-            </a>
-            <a class="lumacard" href="/assets/files/LBB25_Health.pdf">
-                <h3>AI and Personalized Health</h3>
-                <p>
-                Investigating AI's role in transforming healthcare through personalized medicine and improved diagnostic capabilities.
-                </p>
-            </a>
-        </div>
+      <h2>Key Discussion Themes</h2>
+      <p>
+        This year's themes are focused on the intersection of technology and human purpose. Each day will have a closed-door roundtable discussion, and a public panel summarizing the key insights. Click the themes to see one-pagers for each topic.
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+        <a class="lumacard" href="/assets/files/LBB25_Law.pdf">
+          <h3>Law in the Age of AI</h3>
+          <p>
+            Exploring new frameworks for AI oversight and regulation that balance innovation with social responsibility and ethical considerations.
+          </p>
+        </a>
+        <a class="lumacard" href="/assets/files/LBB25_Agentic_AI.pdf">
+          <h3>Privacy and the Rise of Agentic AI</h3>
+          <p>
+            Examining how AI agents and digital twins can enhance individual and community capabilities while preserving privacy and personal autonomy.
+          </p>
+        </a>
+        <a class="lumacard" href="/assets/files/LBB25_Health.pdf">
+          <h3>AI and Personalized Health</h3>
+          <p>
+            Investigating AI's role in transforming healthcare through personalized medicine and improved diagnostic capabilities.
+          </p>
+        </a>
+      </div>
     </section>
 
     <section>
-        <h2>Why the Wisdom House?</h2>
-        <p>
-          In choosing this historic church as our venue, we recognize that the greatest technological advances must be guided by timeless human wisdom. The sacred architecture and contemplative atmosphere of the Wisdom House provide an inspiring setting for discussions that will shape our collective future.
-        </p>
+      <h2>Why the Wisdom House?</h2>
+      <p>
+        In choosing this historic church as our venue, we recognize that the greatest technological advances must be guided by timeless human wisdom. The sacred architecture and contemplative atmosphere of the Wisdom House provide an inspiring setting for discussions that will shape our collective future.
+      </p>
     </section>
-
-    <!-- <section id="organizers">
-        <h2>Organizers</h2>
-        <p>
-          We are grateful for the support of our partners who share our vision for a future where technology and humanity thrive together.
-        </p>
-    </section> -->
 
     <section id="partners">
-        <h2>Partners</h2>
-        <p>
-          Leading Beyond Boundaries is a collaboration across world leading academic institutions and organizations, and is made possible by the support of our partners.
-        </p>
-        <img class="partner-logo" src="assets/img/partners/MIT_ML_Logo_K_RGB.png" alt="MIT Media Lab">
-        <img class="partner-logo" style="width: 300px;" src="assets/img/partners/hls.svg" alt="Harvard Center on the Legal Profession">
-        <img class="partner-logo" src="assets/img/partners/S-DEL-condensed-2color.png" alt="Stanford Digital Economy Lab">
-        <img class="partner-logo" style="width: 250px;" src="assets/img/partners/methai.svg" alt="Metha.ai">
-        <img class="partner-logo" src="assets/img/partners/connection-logo.png" style="height: 80px;" alt="MIT Connection Science">
-        <p>If your organization is interested in exploring partnership opportunities with us, please contact us at <a href="mailto:rmahari@mit.edu" style="color: var(--dark-accent);">rmahari@mit.edu</a>.</p>
+      <h2>Partners</h2>
+      <p>
+        Leading Beyond Boundaries is a collaboration across world-leading academic institutions and organizations, and is made possible by the support of our partners.
+      </p>
+      <img class="partner-logo" src="assets/img/partners/MIT_ML_Logo_K_RGB.png" alt="MIT Media Lab">
+      <img class="partner-logo" style="width: 300px;" src="assets/img/partners/hls.svg" alt="Harvard Center on the Legal Profession">
+      <img class="partner-logo" src="assets/img/partners/S-DEL-condensed-2color.png" alt="Stanford Digital Economy Lab">
+      <img class="partner-logo" style="width: 250px;" src="assets/img/partners/methai.svg" alt="Metha.ai">
+      <img class="partner-logo" src="assets/img/partners/connection-logo.png" style="height: 80px;" alt="MIT Connection Science">
+      <p>If your organization is interested in exploring partnership opportunities with us, please contact us at <a href="mailto:rmahari@mit.edu" style="color: var(--dark-accent);">rmahari@mit.edu</a>.</p>
     </section>
   </main>
-
-
 
   <!-- Small JS snippet for nav scroll effects -->
   <script>
@@ -416,16 +419,16 @@
     });
   </script>
   <script>
-    const text = "Where Innovation Meets Human Purpose"
+    const text = "Where Innovation Meets Human Purpose";
     const typewriterElement = document.getElementById('typewriter');
     let index = 0;
 
     function typeWriter() {
-        if (index < text.length) {
-            typewriterElement.textContent += text[index];
-            index++;
-            setTimeout(typeWriter, 120); // Adjust speed (in ms)
-        }
+      if (index < text.length) {
+        typewriterElement.textContent += text[index];
+        index++;
+        setTimeout(typeWriter, 120); // Adjust speed (in ms)
+      }
     }
 
     typeWriter();
