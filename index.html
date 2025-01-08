@@ -2,630 +2,414 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leading Beyond Boundaries</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Minimal Luma-Inspired Layout</title>
   <style>
-      #particles-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: linear-gradient(45deg, #b0c1d3, #91aecd);
+    /* Reset & Global */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      --background-color: #F4F5F6;
+      --light-accent: #ecf7ff;
+      --dark-accent: #459bfe;
+      --card-color: #FDFDFD;
+    }
+    body {
+      font-family: sans-serif;
+      /* Subtle ice-blue to white gradient */
+      color: #333;
+      background: linear-gradient(180deg, var(--light-accent) 0%, var(--background-color) 20%);
     }
 
-    #typewriter {
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      display: inline-block;
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      /* Start fully transparent, no border */
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 1rem;
+      transition: background-color 0.3s, border-bottom 0.3s;
+      z-index: 999; /* keep on top */
     }
 
-    #cursor {
-        animation: blink 0.8s steps(1) infinite;
+    /* When scrolled, add translucent bg & subtle bottom border */
+    .navbar.scrolled {
+      background-color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(5px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
-    @keyframes blink {
-        50% {
-            opacity: 0;
-        }
+    .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #5b5b5b;
+      font-weight: 500;
+    }
+    .nav-links a:hover {
+      color: var(--dark-accent);
+    }
+
+    /* Main content container */
+    .container {
+      max-width: 900px; /* fixed max width for a clean web-app feel */
+      margin: 0 auto;
+      padding: 80px 1rem 2rem; /* top padding to avoid nav overlap */
+    }
+
+    /* Section cards */
+    section {
+        padding: 1.5rem;
+    }
+
+    section h2 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    section p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .card {
+     background: var(--card-color);
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .lumacard {
+      background: #FDFDFD;
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      min-width: 200px;
+      transition: border 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .lumacard:hover {
+      border: 0.5px solid #D3D3D4;
+      box-shadow: 0 0px 10px #D3D3D4;
+    }
+
+    .lumacard h3 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .lumacard p {
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      color: #A9AAAA;
+    }
+
+    .lumacard button-div {
+      margin-top: auto; 
+      text-align: center;
+      width: 100%;
+    }
+
+    .lumacard button {
+      padding: 0.5rem 1rem;
+      background: var(--light-accent);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+    }
+
+
+    /* Hero Section Styles */
+    .hero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    /* Left side text */
+    .hero-text {
+        flex: 1;
+        min-width: 280px;
+    }
+
+    .hero-text h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    }
+
+    .hero-text h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    }
+
+    .hero-text h4 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    }
+
+    .hero-text button {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    background: var(--light-accent);
+    /* color: #fff; */
+    cursor: pointer;
+    }
+
+    .partner-logo {
+        height: 100px;
+        width: auto;
+        padding: 1rem;
+    }
+
+    /* Right side placeholder */
+    /* .hero-image {
+    width: 220px;
+    height: 180px;
+    background: #e3e3e3;
+    border-radius: 4px;
+    } */
+
+    /* Responsive adjustments (example):
+       If needed, you can tweak font-sizes or spacing further here. */
+    @media (max-width: 600px) {
+      .nav-links a {
+        margin-left: 1rem;
+      }
+      section {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      section h2 {
+        font-size: 1.1rem;
+      }
     }
   </style>
+  <style>
+    /* Container sizing & background */
+    .hero-image {
+        position: relative;
+        width: 300px;        height: 300px;
+        background: linear-gradient(to bottom, var(--light-accent), #ffffff);
+        overflow: hidden;
+        border-radius: 50%; 
+        flex-shrink: 0;
+    }
+
+    /* Church bobbing animation */
+    .church {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 200px;
+    transform: translateX(-50%);
+    animation: bob 3s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+    0%, 100% {
+        transform: translate(-50%, 0);
+    }
+    50% {
+        transform: translate(-50%, -10px);
+    }
+    }
+
+    /* Snowflake elements (using a background image for simplicity) */
+    .snowflake {
+    position: absolute;
+    top: -50px;
+    width: 30px;
+    height: 30px;
+    background: url('assets/img/snowflake.png') no-repeat center/cover;
+    animation: snowfall 5s linear infinite;
+    opacity: 0.8;
+    }
+
+    @keyframes snowfall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(450px) rotate(360deg);
+        opacity: 0;
+    }
+    }
+  </style>
+   <style>
+    #particles-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(45deg, #b0c1d341, #91aecd4e);
+  }
+
+  #typewriter {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    display: inline-block;
+  }
+
+  #cursor {
+      animation: blink 0.8s steps(1) infinite;
+  }
+
+  @keyframes blink {
+      50% {
+          opacity: 0;
+      }
+  }
+</style>
 </head>
 <body>
-  <nav>
-    <a href="#overview">Overview</a>
-    <a href="#agenda">Agenda</a>
-    <a href="#partners">Partners</a>
-    <a href="/2024" style="white-space: nowrap;">See 2024</a>
-  </nav>
-  <header>
-    <!-- <h3>Davos, 2025</h3> -->
-    <h1>Leading Beyond Boundaries</h1>
-    <h4><em>Empowering innovation and technology for a better tomorrow</em></h4>
-  </header>
-  <main>    
+    <!-- Nav -->
+    <div class="navbar" id="navbar">
+        <div class="nav-links">
+            <a href="#overview">Overview</a>
+            <a href="#agenda">Events</a>
+            <a href="#partners">Partners</a>
+            <a href="/assets/files/LBB24_Report.pdf" style="white-space: nowrap;">2024 Report</a>
+        </div>
+    </div>
+
+  <!-- Main content -->
+  <main class="container">
+
+    <section class="hero">
+        <div class="hero-text">
+          <h1>Leading Beyond Boundaries</h1>
+          <h2>Davos 2025, <br/><em><a style="text-decoration: none; color: inherit;" href="https://maps.app.goo.gl/C575X7596a41v6sn7">Reformierte Kirche St. Johann</a></em></h2>
+        </div>
+        <div class="hero-image">
+            <!-- Church Image (gently bobbing) -->
+            <img src="assets/img/church.png" alt="Church" class="church" />
+            
+            <!-- Snowflakes (falling) -->
+            <div class="snowflake" style="left: 10%; animation-duration: 7s;"></div>
+            <div class="snowflake" style="left: 30%; animation-duration: 5s; animation-delay: 1s;"></div>
+            <div class="snowflake" style="left: 50%; animation-duration: 6s; animation-delay: 2s;"></div>
+            <div class="snowflake" style="left: 70%; animation-duration: 8s; animation-delay: 3s;"></div>
+            <div class="snowflake" style="left: 90%; animation-duration: 9s; animation-delay: 4s;"></div>
+          </div>
+      </section>
+
     <section id="overview">
-     <h2>Davos 2025: <span id="typewriter"></span><span id="cursor">|</span></h2>
-      <p>
-        Against the historic backdrop of the Wisdom House, where centuries of spiritual reflection meet cutting-edge discourse, 
-        Leading Beyond Boundaries brings together the world's foremost thinkers, innovators, and decision-makers to chart 
-        the course of humanity's technological future.
-      </p>
-          <p>
-        This exclusive gathering, held alongside the World Economic Forum, creates an intimate space for meaningful dialogue and 
-        breakthrough insights on the most pressing challenges of our time.
-      </p>
-    
-      <h3>Key Discussion Themes</h3>
-      <ul>
-        <li>
-          <strong>Law in the Age of AI</strong><br>
-          Exploring new frameworks for AI oversight and regulation that balance innovation with social responsibility and ethical considerations.
-        </li>
-        <li>
-          <strong>Privacy and the Rise of Agentic AI</strong><br>
-          Examining how AI agents and digital twins can enhance individual and community capabilities while preserving privacy and personal autonomy.
-        </li>
-        <li>
-          <strong>AI and Personalized Health</strong><br>
-          Investigating AI's role in transforming healthcare through personalized medicine and improved diagnostic capabilities.
-        </li>
-        <br/>
-        <li>
-          <strong>Special Session: Human-AI Symbiosis</strong><br>
-          Join us for an engaging discussion of Sandy Pentland's forthcoming book "Human-AI Symbiosis," exploring the evolving 
-          relationship between humans and artificial intelligence, and the path toward meaningful collaboration between human and 
-          machine intelligence.
-        </li>
-      </ul>
-
-      <h3>Why the Wisdom House?</h3>
-      <p>
-        In choosing this historic church as our venue, we recognize that the greatest technological advances must be guided by 
-        timeless human wisdom. The sacred architecture and contemplative atmosphere of the Wisdom House provide an inspiring setting 
-        for discussions that will shape our collective future.
-      </p>
-    
-      <h3>Join Us in Shaping Tomorrow</h3>
-      <p>
-        This invitation-only gathering offers:
-      </p>
-      <ul>
-        <li>Intimate roundtable discussions with global thought leaders</li>
-        <li>Open forums for dynamic knowledge exchange</li>
-        <li>Networking opportunities with decision-makers and innovators</li>
-        <li>Concrete action plans for implementing positive change</li>
-      </ul>
-      <p>
-        <em>Leading Beyond Boundaries is an independent event held in conjunction with the World Economic Forum Annual Meeting 2025.</em>
-      </p>      
+        <h2>Davos 2025: <span id="typewriter"></span><span id="cursor">|</span></h2>
+            <p>
+            Against the historic backdrop of the Wisdom House, where centuries of spiritual reflection meet cutting-edge discourse, 
+            Leading Beyond Boundaries brings together the world's foremost thinkers, innovators, and decision-makers to chart 
+            the course of humanity's technological future.
+        </p>
+        <p>
+            This gathering, held alongside the World Economic Forum, creates an intimate space for meaningful dialogue and 
+            breakthrough insights on the most pressing challenges of our time.
+        </p>
     </section>
-    <!-- <section id="people">
-        <h2>Panelists</h2>
-        <div class="speaker-grid">
-            <div class="speaker-item">
-              <a href="https://www.linkedin.com/in/vivoutlaw/">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Vivek_Sharma.jpeg" alt="Vivek Sharma" style="width: 100%;">
-                  <div class="details">
-                    <h3>Vivek Sharma</h3>
-                    <p>Lead CV Privacy - PPML, Sony Research. Previously, MIT - Media Lab, MGH - Harvard Medical School </p>
-                  </div>
-                </div>
-              </a>
-            </div> 
-  
-         
-                <div class="speaker-item">
-              <a href="https://www.media.mit.edu/people/sandy/overview/">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Sandy_Pentland.jpeg" alt="Alex 'Sandy' Pentland" style="width: 100%;">
-                  <div class="details">
-                    <h3>Alex 'Sandy' Pentland</h3>
-                    <p>Director of MIT Connection Science, Professor, MIT</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-            <div class="speaker-item">
-              <a href="https://www.media.mit.edu/people/rmahari/overview/">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Robert_Mahari.jpeg" alt="Robert Mahari" style="width: 100%;">
-                  <div class="details">
-                    <h3>Robert Mahari</h3>
-                    <p>JD-PhD at Harvard Law School &amp; MIT</p>
-                  </div>
-                </div>
-              </a>
-            </div>
 
-            <div class="speaker-item">
-                <a href="https://www.media.mit.edu/people/raskar/overview/">
-                  <div class="speaker">
-                    <img src="assets/img/speakers/Ramesh_Raskar.png" alt="Ramesh Raskar" style="width: 100%;">
-                    <div class="details">
-                      <h3>Ramesh Raskar</h3>
-                      <p>Associate Director and Professor, MIT Media Lab</p>
-                    </div>
-                  </div>
-                </a>
-              </div>
-    
-
-            <div class="speaker-item">
-            <a href="https://www.linkedin.com/in/tremblerz">
-              <div class="speaker">
-                <img src="assets/img/speakers/Abhishek_Singh.jfif" alt="Abhishek Singh" style="width: 100%;">
-                <div class="details">
-                  <h3>Abhishek Singh</h3>
-                  <p>Grad Student, MIT Media Lab</p>
-                </div>
-              </div>
-            </a>
-          </div>
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Rick_Bright.jpg" alt="Rick A. Bright" style="width: 100%;">
-                  <div class="details">
-                    <h3>Rick A. Bright</h3>
-                    <p>CEO of Bright Global Health</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Victor_Dzau.jpg" alt="Victor J. Dzau" style="width: 100%;">
-                  <div class="details">
-                    <h3>Victor J. Dzau</h3>
-                    <p>President of the United States National Academy of Medicine</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-  
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Seema_Kumar.jpg" alt="Seema Kumar" style="width: 100%;">
-                  <div class="details">
-                    <h3>Seema Kumar</h3>
-                    <p>CEO of Deerfield Cure</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-  
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/James_Landay.jpg" alt="James Landay" style="width: 100%;">
-                  <div class="details">
-                    <h3>James Landay</h3>
-                    <p>Vice Director of the Stanford HAI, Professor, Stanford</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-
-  
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Brandon_Suh.jpg" alt="Brandon Suh" style="width: 100%;">
-                  <div class="details">
-                    <h3>Brandon Suh</h3>
-                    <p>CEO of Lunit Inc.</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-
-
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Asha_Jadeja.jpeg" alt="Asha Jadeja" style="width: 100%;">
-                  <div class="details">
-                    <h3>Asha Jadeja</h3>
-                    <p>Founder, Motwani Jadeja Foundation</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-  
-    
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Maximilian_Groth.jpg" alt="Maximilian Groth" style="width: 100%;">
-                  <div class="details">
-                    <h3>Maximilian Groth</h3>
-                    <p>CEO of Decentriq</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-  
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Balamurugan_D.jpg" alt="Balamurugan D " style="width: 100%;">
-                  <div class="details">
-                    <h3>Balamurugan D </h3>
-                    <p>Joint Secretary, DPIIT, Government of India</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-  
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Caitlin_Kraft_Buchman.jpeg" alt="Caitlin Kraft Buchman " style="width: 100%;">
-                  <div class="details">
-                    <h3>Caitlin Kraft Buchman </h3>
-                    <p>CEO of Women@TheTable and Executive Committee, Geneva Council</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Georges_De_Feu.jpg" alt="Georges De Feu " style="width: 100%;">
-                  <div class="details">
-                    <h3>Georges De Feu </h3>
-                    <p>CEO of LynxCare Inc.</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Anagh_Singh.jpg" alt="Anagh Singh" style="width: 100%;">
-                  <div class="details">
-                    <h3>Anagh Singh</h3>
-                    <p>Asst. VP, Invest India</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-            
-      
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Akhilesh_Tuteja.jpg" alt="Akhilesh Tuteja" style="width: 100%;">
-                  <div class="details">
-                    <h3>Akhilesh Tuteja</h3>
-                    <p>Global Head - Cyber Security Consulting, India Head - Digital Consulting (KPMG)</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Varda_Taneja.jpg" alt="Varda Taneja" style="width: 100%;">
-                  <div class="details">
-                    <h3>Varda Taneja</h3>
-                    <p>VP, Invest India</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Gabriele_Mazzini.jpg" alt="Gabriele Mazzini" style="width: 100%;">
-                  <div class="details">
-                    <h3>Gabriele Mazzini</h3>
-                    <p>Team Leader AI Act - European Commission</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-  
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/George_Vradenburg.jpeg" alt="George Vradenburg" style="width: 100%;">
-                  <div class="details">
-                    <h3>George Vradenburg</h3>
-                    <p>Chairman and Co-Founder of UsAgainstAlzheimer's</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Roger_Dubach.jpg" alt="Roger Dubach" style="width: 100%;">
-                  <div class="details">
-                    <h3>Roger Dubach</h3>
-                    <p>Ambassador, Deputy Director, Directorate of International Law at the Federal Department of Foreign Affairs (FDFA) Switzerland</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Qasim_Bukhari.jpg" alt="Qasim Bukhari" style="width: 100%;">
-                  <div class="details">
-                    <h3>Qasim Bukhari</h3>
-                    <p>MIT</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-      
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Tobin_South.jpeg" alt="Tobin South" style="width: 100%;">
-                  <div class="details">
-                    <h3>Tobin South</h3>
-                    <p>Grad Student, MIT Media Lab</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-          <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Deepti_Pahwa.png" alt="Deepti Pahwa" style="width: 100%;">
-                  <div class="details">
-                    <h3>Deepti Pahwa</h3>
-                    <p>Founding Partner LISA Stanford GSB LEAD Incubator &amp; Accelerator, CEO Pinnacle Pulse</p>
-                  </div>
-                </div>
-              </a>
-            </div>  
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Leandro_Von_Werra.jpg" alt="Leandro Von Werra" style="width: 100%;">
-                  <div class="details">
-                    <h3>Leandro Von Werra</h3>
-                    <p>Chief Loss Officer, HuggingFace</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Vineet_Basotia.jpg" alt="Vineet Basotia" style="width: 100%;">
-                  <div class="details">
-                    <h3>Vineet Basotia</h3>
-                    <p>Global Head, Senior Director, Health Systems Strategic Insights &amp; Analytics, Philips</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-            
-  
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Kay_Firth_Butterfield.jpg" alt="Kay Firth-Butterfield" style="width: 100%;">
-                  <div class="details">
-                    <h3>Kay Firth-Butterfield</h3>
-                    <p>CEO of Good Tech Advisory,  Former Head of AI and Member of the Executive Committee at WEF</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-  
-  
-            <div class="speaker-item">
-              <a href="">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Hossein_Rahnama.jpg" alt="Hossein Rahnama" style="width: 100%;">
-                  <div class="details">
-                    <h3>Hossein Rahnama</h3>
-                    <p>CEO of Flybits and Professor, MIT</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-          </div>
-    </section>
-    <section id="roundtables">
-        <h2>Roundtables</h2>
-        <h4>(By Invitation Only)</h4>
-        <p> 
-
-        We are organizing three private roundtables.
-            <ul style="padding-right: 8rem;">
-            <li>HealthTech: Creating a preventive and collaborative healthcare ecosystem by decentralizing surveillance - An autonomous, participatory, and privacy-first approach.</li>
-            <li>PrivacyTech: Forging a Future of AI and Privacy: Collaborative Strategies for Academia, Industry, and Government.</li>
-            <li>Generative AI: Bridging the gap between AI regulation and practice.</li>
-            </ul> 
-            
-        </p>
-
-        <p> 
-        Following WEF, we plan to compile a high-impact report encompassing recommendations on AI in healthcare, privacy in AI, Generative AI, 
-        responsible AI practices, policy considerations, privacy measures, and collaborative strategies based on our roundtable discussion.  
-        If these topics interest you, and you would like to contribute, please contact organizers.
-        </p>
-        
-        <p> 
-        If you are in Davos and interested in attending our roundtables as a listener, please <a href="mailto:rmahari@mit.edu">contact organizers</a>.
-        </p>
-
-    </section> -->
     <section id="agenda">
-      <h2>Agenda</h2>
-      <h3>Private Roundtable Alignment Sessions</h3>
-      <p>Each alignment sessions will last 60 minutes and will be held under Chatham House Rules.</p>
-  
-      <p><strong>Location:</strong> Wisdom House, St. Johann's Church in Davos, Switzerland</p>
-      <p><strong>Dates & Times:</strong> January 21, 22, and 23, from 3:00-4:00 PM.</p>
-      <p><strong>Participants:</strong> Around 15 invited global leaders.</p>
-  
-      <p><strong>Tentative Topics:</strong></p>
-      <ul>
-          <li>Governance in the Age of AI</li>
-          <li>Privacy and the Rise of Agentic AI</li>
-          <li>AI and Personalized Health</li>
-      </ul>
-  
-      <h3>Public Panel Discussions</h3>
-      <p>Each panel will invite global experts to explore important topics related to technology and policy. The panels are be preceded by a 60-minute private roundtable alignment session. Following each 45-minute panel discussion there will be an opportunity for Q&A. Light refreshments will be served.</p>
-  
-      <p><strong>Location:</strong> Wisdom House, St. Johann's Church in Davos, Switzerland</p>
-      <p><strong>Duration:</strong> 45 minutes</p>
-      <p><strong>Dates & Times:</strong> January 21, 22, and 23, from 4:00-5:00 PM.</p>
-  
-      <p><strong>Tentative Topics:</strong></p>
-      <ul>
-          <li>Launching the Stanford Digitalist Papers - Insights on AI governance.</li>
-          <li>Shared Wisdom - Agentic twins for individual and community enhancement.</li>
-          <li>Human-AI Symbiosis - Book reading and discussion featuring Sandy Pentland.</li>
-      </ul>
-  
-      <h3>Additional Events</h3>
-      <p><strong>Public Dinner:</strong> A communal Swiss dinner featuring local foods will be held on Tuesday, January 21 at 9:00 PM, bringing together approximately 50 participants to discuss AI ethics and related themes in an informal setting.</p>
-  </section>
-  <section id="partners">
-      <h2>Partners</h2>
-      <ul style="padding-right: 8rem;">
-          <!-- <li class="partner"><a href="https://www.media.mit.edu/">MIT Media Lab</a>,<a href="http://cameraculture.media.mit.edu/">Camera Culture Group</a></li> -->
-          <li class="partner"><a href="https://connection.mit.edu/">MIT Connection Science</a></li>
-          <li class="partner"><a href="https://digitaleconomy.stanford.edu">Stanford Digital Economy Lab</a></li>
-          <li class="partner"><a href="https://broadlights.org/wisdomhousedavos/">Wisdom House Davos</a></li>
-        </ul>
-        <p></p>We're actively looking for more partners. If you are interested in partnering with us, please <a href="mailto:rmahari@mit.edu">contact Robert Mahari</a>.</p>
-  </section>
+      <h2>Public Events</h2>
+      <p>
+        Several events will be open to the public and can be registered through Luma.
+      </p>
+
+        <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
+            <iframe
+                src="https://lu.ma/embed/calendar/cal-kmWOFmo32ZSHqQG/events"
+                frameborder="0"
+                style="width:100%; min-height:450px; border: 1px solid #bfcbda88; border-radius: 15px;"
+                allowfullscreen=""
+                aria-hidden="false"
+                tabindex="0"
+            ></iframe>
+        </div>
+    </section>
+
+    <section id="themes">
+        <h2>Key Discussion Themes</h2>
+        <p> 
+            This year's themes are focused on the intersection of technology and human purpose. Each day will have a closed-door roundtable discussion, and a public panel summarizing the key insights. Click the themes to see one-pagers for each topic.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+            <a class="lumacard" href="/assets/files/LBB25_Law.pdf">
+                <h3>Law in the Age of AI</h3>
+                <p>
+                Exploring new frameworks for AI oversight and regulation that balance innovation with social responsibility and ethical considerations.
+                </p>
+            </a>
+            <a class="lumacard" href="/assets/files/LBB25_AgenticAI.pdf">
+                <h3>Privacy and the Rise of Agentic AI</h3>
+                <p>
+                Examining how AI agents and digital twins can enhance individual and community capabilities while preserving privacy and personal autonomy.
+                </p>
+            </a>
+            <a class="lumacard" href="/assets/files/LBB25_Health.pdf">
+                <h3>AI and Personalized Health</h3>
+                <p>
+                Investigating AI's role in transforming healthcare through personalized medicine and improved diagnostic capabilities.
+                </p>
+            </a>
+        </div>
+    </section>
+
+    <section>
+        <h2>Why the Wisdom House?</h2>
+        <p>
+          In choosing this historic church as our venue, we recognize that the greatest technological advances must be guided by timeless human wisdom. The sacred architecture and contemplative atmosphere of the Wisdom House provide an inspiring setting for discussions that will shape our collective future.
+        </p>
+    </section>
+
+    <!-- <section id="organizers">
+        <h2>Organizers</h2>
+        <p>
+          We are grateful for the support of our partners who share our vision for a future where technology and humanity thrive together.
+        </p>
+    </section> -->
+
+    <section id="partners">
+        <h2>Partners</h2>
+        <p>
+          We are grateful for the support of our partners who share our vision for a future where technology and humanity thrive together.
+        </p>
+        <img class="partner-logo" src="assets/img/partners/MIT_ML_Logo_K_RGB.png" alt="MIT Media Lab">
+        <img class="partner-logo" style="width: 300px;" src="assets/img/partners/hls.svg" alt="Harvard Center on the Legal Profession">
+        <img class="partner-logo" src="assets/img/partners/S-DEL-condensed-2color.png" alt="Stanford Digital Economy Lab">
+        <img class="partner-logo" style="width: 250px;" src="assets/img/partners/methai.svg" alt="Metha.ai">
+        <img class="partner-logo" src="assets/img/partners/connection-logo.png" style="height: 90px;" alt="MIT Connection Science">
+        <p>We're actively looking for more partners. If you are interested in partnering with us, please <a href="mailto:rmahari@mit.edu">contact Robert Mahari</a>.</p>
+    </section>
   </main>
-  <footer>
-    <p>&copy; 2025 Leading Beyond Boundaries | <a href="mailto:rmahari@mit.edu">Contact organizers</a></p>
-  </footer>
-  <canvas id="particles-bg"></canvas>
+
+
+
+  <!-- Small JS snippet for nav scroll effects -->
   <script>
-    const canvas = document.getElementById('particles-bg');
-    const ctx = canvas.getContext('2d');
-    
-    // Set canvas size
-    function setCanvasSize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    setCanvasSize();
-    window.addEventListener('resize', setCanvasSize);
-
-    // Particle class
-    class Particle {
-      constructor() {
-        this.reset();
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
       }
-
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = Math.random() * 2 - 1;
-        this.speedY = Math.random() * 2 - 1;
-        this.life = Math.random() * 0.5 + 0.5;
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        this.life -= 0.005;
-
-        if (this.life <= 0 || 
-            this.x < 0 || 
-            this.x > canvas.width || 
-            this.y < 0 || 
-            this.y > canvas.height) {
-          this.reset();
-        }
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(200, 200, 200, ${this.life})`;
-        ctx.fill();
-      }
-    }
-
-    // Create particle array
-    const particles = Array.from({ length: 100 }, () => new Particle());
-
-    // Animation loop
-    function animate() {
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-
-      // Draw connections
-      particles.forEach((p1, i) => {
-        particles.slice(i + 1).forEach(p2 => {
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 100) {
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(200, 200, 200, ${0.2 * (1 - distance/100)})`;
-            ctx.stroke();
-          }
-        });
-      });
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
+    });
   </script>
   <script>
     const text = "Where Innovation Meets Human Purpose"
@@ -636,11 +420,12 @@
         if (index < text.length) {
             typewriterElement.textContent += text[index];
             index++;
-            setTimeout(typeWriter, 70); // Adjust speed (in ms)
+            setTimeout(typeWriter, 120); // Adjust speed (in ms)
         }
     }
 
     typeWriter();
   </script>
+
 </body>
 </html>
