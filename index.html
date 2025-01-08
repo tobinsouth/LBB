@@ -158,47 +158,6 @@
       flex-shrink: 0;
     }
 
-    /* Bobbing church image inside the hero circle */
-    .church {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 200px;
-      transform: translateX(-50%);
-      animation: bob 3s ease-in-out infinite;
-    }
-
-    @keyframes bob {
-      0%, 100% {
-        transform: translate(-50%, 0);
-      }
-      50% {
-        transform: translate(-50%, -10px);
-      }
-    }
-
-    /* Snowflake elements falling */
-    .snowflake {
-      position: absolute;
-      top: -50px;
-      width: 30px;
-      height: 30px;
-      background: url('assets/img/snowflake.png') no-repeat center/cover;
-      animation: snowfall 5s linear infinite;
-      opacity: 0.8;
-    }
-
-    @keyframes snowfall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(450px) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
     /********************************************
      * CARD STYLES
      ********************************************/
@@ -362,13 +321,7 @@
         </h2>
       </div>
       <div class="hero-image">
-        <img src="assets/img/church.png" alt="Church" class="church"/>
-        <!-- Snowflakes (falling) -->
-        <div class="snowflake" style="left: 10%; animation-duration: 7s;"></div>
-        <div class="snowflake" style="left: 30%; animation-duration: 5s; animation-delay: 1s;"></div>
-        <div class="snowflake" style="left: 50%; animation-duration: 6s; animation-delay: 2s;"></div>
-        <div class="snowflake" style="left: 70%; animation-duration: 8s; animation-delay: 3s;"></div>
-        <div class="snowflake" style="left: 90%; animation-duration: 9s; animation-delay: 4s;"></div>
+        
       </div>
     </section>
 
