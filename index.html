@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <!-- Ensures proper mobile zoom & scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Minimal Luma-Inspired Layout</title>
+
   <style>
-    /* Reset & Global */
+    /********************************************
+     * RESET & GLOBAL
+     ********************************************/
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    :root {
       --background-color: #F4F5F6;
       --light-accent: #ecf7ff;
       --dark-accent: #459bfe;
       --card-color: #FDFDFD;
+      --main-font: sans-serif;
     }
+
     body {
-      font-family: sans-serif;
-      /* Subtle ice-blue to white gradient */
+      font-family: var(--main-font);
       color: #333;
       background: linear-gradient(180deg, var(--light-accent) 0%, var(--background-color) 30%);
     }
 
-    /* Navbar */
+    /********************************************
+     * NAVBAR
+     ********************************************/
     .navbar {
       position: fixed;
       top: 0;
       width: 100%;
-      /* Start fully transparent, no border */
       background-color: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1rem 1rem;
+      padding: 1rem;
       transition: background-color 0.3s, border-bottom 0.3s;
-      z-index: 999; /* keep on top */
+      z-index: 999;
     }
 
-    /* When scrolled, add translucent bg & subtle bottom border */
     .navbar.scrolled {
       background-color: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(5px);
@@ -48,26 +57,30 @@
       text-decoration: none;
       color: #5b5b5b;
       font-weight: 500;
+      font-size: 1rem;
     }
+
     .nav-links a:hover {
       color: var(--dark-accent);
     }
 
-    /* Main content container */
+    /********************************************
+     * CONTAINER & GENERAL SPACING
+     ********************************************/
     .container {
-      max-width: 900px; /* fixed max width for a clean web-app feel */
+      max-width: 900px;
       margin: 0 auto;
-      padding: 80px 1rem 2rem; /* top padding to avoid nav overlap */
+      padding: 80px 2rem 2rem 2rem; /* top padding avoids overlap under navbar */
     }
 
-    /* Section cards */
     section {
-      padding: 1rem;
+      padding: 1rem 0;
     }
 
     section h2 {
       margin-bottom: 1rem;
       font-size: 1.3rem;
+      line-height: 1.3;
     }
 
     section p {
@@ -77,110 +90,34 @@
       color: #333;
     }
 
-    .card {
-      background: var(--card-color);
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-
-    .lumacard {
-      background: #FDFDFD;
-      border-radius: 12px;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      min-width: 200px;
-      transition: border 0.3s, box-shadow 0.3s;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .lumacard:hover {
-      border: 0.5px solid #D3D3D4;
-      box-shadow: 0 0px 10px #D3D3D4;
-    }
-
-    .lumacard h3 {
-      font-size: 1rem; /* slightly bigger than before */
-      margin-bottom: 1rem;
-    }
-
-    .lumacard p {
-      font-size: 0.9rem; /* slightly bigger than before */
-      margin-bottom: 1rem;
-      color: #A9AAAA;
-    }
-
-    .lumacard button-div {
-      margin-top: auto; 
-      text-align: center;
-      width: 100%;
-    }
-
-    .lumacard button {
-      padding: 0.5rem 1rem;
-      background: var(--light-accent);
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: background-color 0.2s;
-    }
-
-    .partner-logo {
-        height: 100px;
-        width: auto;
-        padding: 1rem;
-    }
-
-    /* Responsive adjustments (example):
-       If needed, you can tweak font-sizes or spacing further here. */
-    @media (max-width: 600px) {
-      .nav-links a {
-        margin-left: 1rem;
-      }
-      section {
-        padding: 1rem;
-        margin-bottom: 1.5rem;
-      }
-      section h2 {
-        font-size: 1.15rem;
-      }
-      .lumacard h3 {
-        font-size: 1rem; /* no further shrink */
-      }
-      .lumacard p {
-        font-size: 0.9rem;
-      }
-    }
-  </style>
-
-  <style>
-    /* Hero Section Styles */
+    /********************************************
+     * HERO SECTION
+     ********************************************/
     .hero {
       display: flex;
       justify-content: center;
       align-items: center;
       border-radius: 8px;
-      padding: 2rem;
+      padding: 2rem 1rem;
       margin-bottom: 2rem;
       gap: 2rem;
-      flex-wrap: wrap; /* Ensures wrapping on smaller screens */
+      flex-wrap: wrap; /* ensures content can wrap on narrow screens */
     }
 
-    /* Left side text */
     .hero-text {
-      flex: 1 1 300px; /* Allows .hero-text to scale down */
-      min-width: 0;    /* Let it shrink below 300px if needed */
+      flex: 1 1 300px;
+      min-width: 0;
+      /* So it can shrink if needed without overflow */
     }
 
     .hero-text h1 {
-      font-size: 1.8rem;
+      font-size: clamp(1.8rem, 5vw, 2.2rem);
       margin-bottom: 1rem;
+      line-height: 1.2;
     }
 
     .hero-text h2 {
-      font-size: 1.2rem;
+      font-size: clamp(1.2rem, 4vw, 1.6rem);
       margin-bottom: 1rem;
     }
 
@@ -198,34 +135,21 @@
       cursor: pointer;
     }
 
-    /* Hero image container */
     .hero-image {
       position: relative;
       flex: 1 1 300px;
-      min-width: 0; /* Let it scale below 300px if needed */
-      max-width: 400px; /* optional: keep the circle from getting too large */
-      height: auto; /* remove forced height for more flexibility */
+      min-width: 0;
+      max-width: 400px;
+      /* keep aspect-ratio to maintain circle shape on narrower screens */
+      aspect-ratio: 1 / 1;
       margin: auto;
-      aspect-ratio: 1/1; /* maintain square shape */
       background: linear-gradient(to bottom, var(--light-accent), #ffffff);
       overflow: hidden;
-      border-radius: 50%; 
+      border-radius: 50%;
       flex-shrink: 0;
     }
 
-    /* Media Query for Hero on small screens */
-    @media (max-width: 600px) {
-      .hero {
-        flex-direction: column;
-        align-items: center;
-      }
-      .hero-text, .hero-image {
-        flex-basis: 100%;
-        max-width: 100%;
-      }
-    }
-
-    /* Church bobbing animation */
+    /* Bobbing church image inside the hero circle */
     .church {
       position: absolute;
       bottom: 0;
@@ -244,7 +168,7 @@
       }
     }
 
-    /* Snowflake elements (using a background image for simplicity) */
+    /* Snowflake elements falling */
     .snowflake {
       position: absolute;
       top: -50px;
@@ -265,25 +189,79 @@
         opacity: 0;
       }
     }
-  </style>
 
-  <style>
-    #particles-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: linear-gradient(45deg, #b0c1d341, #91aecd4e);
+    /********************************************
+     * CARD STYLES
+     ********************************************/
+    .card {
+      background: var(--card-color);
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
-    /* Make the typewriter text scale nicely */
+    .lumacard {
+      background: var(--card-color);
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      min-width: 200px;
+      transition: border 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .lumacard:hover {
+      border: 0.5px solid #D3D3D4;
+      box-shadow: 0 0px 10px #D3D3D4;
+    }
+
+    .lumacard h3 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .lumacard p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      color: #565656;
+    }
+
+    .lumacard button-div {
+      margin-top: auto; 
+      text-align: center;
+      width: 100%;
+    }
+
+    .lumacard button {
+      padding: 0.5rem 1rem;
+      background: var(--light-accent);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+    }
+
+    /********************************************
+     * PARTNER LOGOS
+     ********************************************/
+    .partner-logo {
+      height: 100px;
+      width: auto;
+      padding: 1rem;
+    }
+
+    /********************************************
+     * TYPEWRITER STYLES
+     ********************************************/
     #typewriter {
       display: inline-block;
       white-space: pre-wrap;
       word-wrap: break-word;
-      font-size: clamp(1rem, 4vw, 1.3rem); /* Prevents it from getting too small/large */
+      /* Use clamp to keep typewriter text from shrinking too much on mobile */
+      /* font-size: clamp(1rem, 3vw, 1.3rem); */
+      line-height: 1.4;
     }
 
     #cursor {
@@ -295,53 +273,114 @@
         opacity: 0;
       }
     }
+
+    /********************************************
+     * RESPONSIVE MEDIA QUERIES
+     ********************************************/
+    @media (max-width: 600px) {
+
+      /* Navbar links slightly smaller on small screens */
+      .nav-links a {
+        margin-left: 1rem;
+        font-size: 0.9rem;
+      }
+
+      /* Slightly tighten spacing for the container */
+      .container {
+        padding: 70px 1rem 1rem 1rem;
+      }
+
+      section h2 {
+        font-size: 1.2rem;
+      }
+
+      section p {
+        font-size: 0.95rem;
+      }
+
+      /* Hero elements: stacked columns if needed */
+      .hero {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-image {
+        /* Remove forced square aspect-ratio on tiny screens */
+        aspect-ratio: auto;
+        /* Ensure it's never too small */
+        min-width: 250px;
+        min-height: 250px;
+      }
+
+      .hero-text, .hero-image {
+        flex-basis: 100%;
+        max-width: 100%;
+      }
+
+      /* The lumacards in a single column if screen is very narrow */
+      #themes div {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
-    <!-- Nav -->
-    <div class="navbar" id="navbar">
-        <div class="nav-links">
-            <a href="#overview">Overview</a>
-            <a href="#agenda">Events</a>
-            <a href="#partners">Partners</a>
-            <a href="/assets/files/LBB24_Report.pdf" style="white-space: nowrap;">2024 Report</a>
-        </div>
-    </div>
 
-  <!-- Main content -->
+  <!-- NAV -->
+  <div class="navbar" id="navbar">
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#agenda">Events</a>
+      <a href="#partners">Partners</a>
+      <a href="/assets/files/LBB24_Report.pdf" style="white-space: nowrap;">2024 Report</a>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
   <main class="container">
 
+    <!-- HERO SECTION -->
     <section class="hero">
-        <div class="hero-text">
-          <h1>Leading Beyond Boundaries</h1>
-          <h2>Davos 2025,<br/><em><a style="text-decoration: none; color: inherit;" href="https://maps.app.goo.gl/C575X7596a41v6sn7">Reformierte Kirche St. Johann</a></em></h2>
-        </div>
-        <div class="hero-image">
-            <!-- Church Image (gently bobbing) -->
-            <img src="assets/img/church.png" alt="Church" class="church" />
-            
-            <!-- Snowflakes (falling) -->
-            <div class="snowflake" style="left: 10%; animation-duration: 7s;"></div>
-            <div class="snowflake" style="left: 30%; animation-duration: 5s; animation-delay: 1s;"></div>
-            <div class="snowflake" style="left: 50%; animation-duration: 6s; animation-delay: 2s;"></div>
-            <div class="snowflake" style="left: 70%; animation-duration: 8s; animation-delay: 3s;"></div>
-            <div class="snowflake" style="left: 90%; animation-duration: 9s; animation-delay: 4s;"></div>
-        </div>
+      <div class="hero-text">
+        <h1>Leading Beyond Boundaries</h1>
+        <h2>
+          Davos 2025,<br />
+          <em>
+            <a style="text-decoration: none; color: inherit;" href="https://maps.app.goo.gl/C575X7596a41v6sn7">
+              Reformierte Kirche St. Johann
+            </a>
+          </em>
+        </h2>
+      </div>
+      <div class="hero-image">
+        <img src="assets/img/church.png" alt="Church" class="church"/>
+        <!-- Snowflakes (falling) -->
+        <div class="snowflake" style="left: 10%; animation-duration: 7s;"></div>
+        <div class="snowflake" style="left: 30%; animation-duration: 5s; animation-delay: 1s;"></div>
+        <div class="snowflake" style="left: 50%; animation-duration: 6s; animation-delay: 2s;"></div>
+        <div class="snowflake" style="left: 70%; animation-duration: 8s; animation-delay: 3s;"></div>
+        <div class="snowflake" style="left: 90%; animation-duration: 9s; animation-delay: 4s;"></div>
+      </div>
     </section>
 
+    <!-- OVERVIEW -->
     <section id="overview">
-        <h2>Davos 2025: <span id="typewriter"></span><span id="cursor">|</span></h2>
-        <p>
-          Against the historic backdrop of the Wisdom House, where centuries of spiritual reflection meet cutting-edge discourse, 
-          Leading Beyond Boundaries brings together the world's foremost thinkers, innovators, and decision-makers to chart 
-          the course of humanity's technological future.
-        </p>
-        <p>
-          This gathering, held alongside the World Economic Forum, creates an intimate space for meaningful dialogue and 
-          breakthrough insights on the most pressing challenges of our time.
-        </p>
+      <h2>
+        Davos 2025: <span id="typewriter"></span><span id="cursor">|</span>
+      </h2>
+      <p>
+        Against the historic backdrop of the Wisdom House, where centuries of spiritual reflection
+        meet cutting-edge discourse, Leading Beyond Boundaries brings together the world's
+        foremost thinkers, innovators, and decision-makers to chart the course of humanity's
+        technological future.
+      </p>
+      <p>
+        This gathering, held alongside the World Economic Forum, creates an intimate space for
+        meaningful dialogue and breakthrough insights on the most pressing challenges of our time.
+      </p>
     </section>
 
+    <!-- AGENDA -->
     <section id="agenda">
       <h2>Public Events</h2>
       <p>
@@ -351,63 +390,79 @@
         <iframe
           src="https://lu.ma/embed/calendar/cal-kmWOFmo32ZSHqQG/events"
           frameborder="0"
-          style="width:100%; min-height:600px; border: 1px solid #bfcbda88; border-radius: 15px;"
+          style="width:100%; min-height:700px; border: 1px solid #bfcbda88; border-radius: 15px;"
           allowfullscreen=""
           aria-hidden="false"
-          tabindex="0"
-        ></iframe>
+          tabindex="0">
+        </iframe>
       </div>
     </section>
 
+    <!-- THEMES -->
     <section id="themes">
       <h2>Key Discussion Themes</h2>
       <p>
-        This year's themes are focused on the intersection of technology and human purpose. Each day will have a closed-door roundtable discussion, and a public panel summarizing the key insights. Click the themes to see one-pagers for each topic.
+        This year's themes are focused on the intersection of technology and human purpose. Each
+        day will have a closed-door roundtable discussion, and a public panel summarizing the key
+        insights. Click the themes to see one-pagers for each topic.
       </p>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
         <a class="lumacard" href="/assets/files/LBB25_Law.pdf">
           <h3>Law in the Age of AI</h3>
           <p>
-            Exploring new frameworks for AI oversight and regulation that balance innovation with social responsibility and ethical considerations.
+            Exploring new frameworks for AI oversight and regulation that balance innovation with
+            social responsibility and ethical considerations.
           </p>
         </a>
         <a class="lumacard" href="/assets/files/LBB25_Agentic_AI.pdf">
           <h3>Privacy and the Rise of Agentic AI</h3>
           <p>
-            Examining how AI agents and digital twins can enhance individual and community capabilities while preserving privacy and personal autonomy.
+            Examining how AI agents and digital twins can enhance individual and community
+            capabilities while preserving privacy and personal autonomy.
           </p>
         </a>
         <a class="lumacard" href="/assets/files/LBB25_Health.pdf">
           <h3>AI and Personalized Health</h3>
           <p>
-            Investigating AI's role in transforming healthcare through personalized medicine and improved diagnostic capabilities.
+            Investigating AI's role in transforming healthcare through personalized medicine and
+            improved diagnostic capabilities.
           </p>
         </a>
       </div>
     </section>
 
+    <!-- WHY WISDOM HOUSE -->
     <section>
       <h2>Why the Wisdom House?</h2>
       <p>
-        In choosing this historic church as our venue, we recognize that the greatest technological advances must be guided by timeless human wisdom. The sacred architecture and contemplative atmosphere of the Wisdom House provide an inspiring setting for discussions that will shape our collective future.
+        In choosing this historic church as our venue, we recognize that the greatest technological
+        advances must be guided by timeless human wisdom. The sacred architecture and contemplative
+        atmosphere of the Wisdom House provide an inspiring setting for discussions that will shape
+        our collective future.
       </p>
     </section>
 
+    <!-- PARTNERS -->
     <section id="partners">
       <h2>Partners</h2>
       <p>
-        Leading Beyond Boundaries is a collaboration across world-leading academic institutions and organizations, and is made possible by the support of our partners.
+        Leading Beyond Boundaries is a collaboration across world-leading academic institutions and
+        organizations, and is made possible by the support of our partners.
       </p>
-      <img class="partner-logo" src="assets/img/partners/MIT_ML_Logo_K_RGB.png" alt="MIT Media Lab">
-      <img class="partner-logo" style="width: 300px;" src="assets/img/partners/hls.svg" alt="Harvard Center on the Legal Profession">
-      <img class="partner-logo" src="assets/img/partners/S-DEL-condensed-2color.png" alt="Stanford Digital Economy Lab">
-      <img class="partner-logo" style="width: 250px;" src="assets/img/partners/methai.svg" alt="Metha.ai">
-      <img class="partner-logo" src="assets/img/partners/connection-logo.png" style="height: 80px;" alt="MIT Connection Science">
-      <p>If your organization is interested in exploring partnership opportunities with us, please contact us at <a href="mailto:rmahari@mit.edu" style="color: var(--dark-accent);">rmahari@mit.edu</a>.</p>
+      <img class="partner-logo" src="assets/img/partners/MIT_ML_Logo_K_RGB.png" alt="MIT Media Lab" />
+      <img class="partner-logo" style="width: 300px;" src="assets/img/partners/hls.svg" alt="Harvard Center on the Legal Profession" />
+      <img class="partner-logo" src="assets/img/partners/S-DEL-condensed-2color.png" alt="Stanford Digital Economy Lab" />
+      <img class="partner-logo" style="width: 250px;" src="assets/img/partners/methai.svg" alt="Metha.ai" />
+      <img class="partner-logo" src="assets/img/partners/connection-logo.png" style="height: 80px;" alt="MIT Connection Science" />
+      <p>
+        If your organization is interested in exploring partnership opportunities with us, please
+        contact us at
+        <a href="mailto:rmahari@mit.edu" style="color: var(--dark-accent);">rmahari@mit.edu</a>.
+      </p>
     </section>
   </main>
 
-  <!-- Small JS snippet for nav scroll effects -->
+  <!-- SCRIPT FOR NAVBAR SCROLL EFFECT -->
   <script>
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -418,6 +473,8 @@
       }
     });
   </script>
+
+  <!-- SCRIPT FOR TYPEWRITER EFFECT -->
   <script>
     const text = "Where Innovation Meets Human Purpose";
     const typewriterElement = document.getElementById('typewriter');
@@ -427,12 +484,10 @@
       if (index < text.length) {
         typewriterElement.textContent += text[index];
         index++;
-        setTimeout(typeWriter, 120); // Adjust speed (in ms)
+        setTimeout(typeWriter, 120);
       }
     }
-
     typeWriter();
   </script>
-
 </body>
 </html>
