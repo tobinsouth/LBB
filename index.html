@@ -102,60 +102,66 @@
     /********************************************
      * HERO SECTION
      ********************************************/
-    .hero {
+    /* New Hero Video Container */
+    .hero-video-container {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden; /* Hides any overflow from border radius */
+      margin: 2rem 0;  /* Adjust margin as needed */
+    }
+
+    /* The video should fill the container width, maintain aspect ratio, 
+      and be clipped to the rounded corners */
+    .hero-video {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover; 
+      border-radius: 12px;
+    }
+
+    /* Overlay that sits on top of the video */
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Optionally, add a semi-transparent dark overlay for better text contrast */
+      /* background: rgba(0, 0, 0, 0.3); */
       display: flex;
       justify-content: center;
       align-items: center;
-      border-radius: 8px;
-      padding: 2rem 1rem;
-      margin-bottom: 2rem;
-      gap: 2rem;
-      flex-wrap: wrap; /* ensures content can wrap on narrow screens */
+      pointer-events: none; /* so clicks pass through to underlying elements if needed */
     }
 
-    .hero-text {
-      flex: 1 1 300px;
-      min-width: 0;
-      /* So it can shrink if needed without overflow */
+    /* Overlay text content styling */
+    .hero-overlay-content {
+      color: #fff; /* Adjust text color to your preference */
+      text-align: center;
+      z-index: 1; /* Make sure text sits on top of the video */
+      pointer-events: none; 
     }
 
-    .hero-text h1 {
-      font-size: clamp(1.8rem, 5vw, 2.2rem);
-      margin-bottom: 1rem;
-      line-height: 1.2;
+    .hero-overlay-content h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 0.5rem;
     }
 
-    .hero-text h2 {
-      font-size: clamp(1.2rem, 4vw, 1.6rem);
-      margin-bottom: 1rem;
+    .hero-overlay-content h2 {
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      font-weight: 400; /* Slightly lighter subtitle */
     }
 
-    .hero-text h4 {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-text button {
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 4px;
-      background: var(--light-accent);
-      cursor: pointer;
-    }
-
-    .hero-image {
-      position: relative;
-      flex: 1 1 300px;
-      min-width: 0;
-      max-width: 400px;
-      /* keep aspect-ratio to maintain circle shape on narrower screens */
-      aspect-ratio: 1 / 1;
-      margin: auto;
-      background: linear-gradient(to bottom, var(--light-accent), #ffffff);
-      overflow: hidden;
-      border-radius: 50%;
-      flex-shrink: 0;
+    /* Responsive considerations */
+    @media (max-width: 600px) {
+      .hero-overlay-content h1 {
+        font-size: 1.8rem;
+      }
+      .hero-overlay-content h2 {
+        font-size: 1.2rem;
+      }
     }
 
     /********************************************
@@ -316,20 +322,24 @@
   <main class="container">
 
     <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="hero-text">
-        <h1>Leading Beyond Boundaries</h1>
-        <h2>
-          Davos 2025,<br />
-          <em>
-            <a style="text-decoration: none; color: inherit;" href="https://maps.app.goo.gl/C575X7596a41v6sn7">
-              Reformierte Kirche St. Johann
-            </a>
-          </em>
-        </h2>
-      </div>
-      <div class="hero-image">
-        
+    <section class="hero-video-container">
+      <video 
+        autoplay 
+        loop 
+        muted 
+        playsinline 
+        class="hero-video"
+      >
+        <source src="assets/videos/mountain.mp4" type="video/mp4" />
+        <!-- Optionally provide a fallback image or other content here -->
+      </video>
+    
+      <!-- Overlay text container -->
+      <div class="hero-overlay">
+        <div class="hero-overlay-content">
+          <h1>Leading Beyond Boundaries</h1>
+          <h2>Davos 2025</h2>
+        </div>
       </div>
     </section>
 
