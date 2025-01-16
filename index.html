@@ -231,6 +231,61 @@
       padding: 1rem;
     }
 
+    /* CSS: Speaker Grid */
+    .speakers {
+      /* display: flex;
+      flex-wrap: wrap; */
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      justify-content: center;
+      margin: 2rem auto;
+      max-width: 900px;   /* Optional max width */
+      padding: 0 1rem;   /* Some horizontal padding */
+    }
+
+    .speaker {
+      flex: 1 1 200px;
+      max-width: 280px;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .speaker img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      filter: grayscale(100%);
+      margin-bottom: 0.8rem;
+    }
+
+    .speaker h3 {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .speaker p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0;
+    }
+
+    /* Example Media Query for smaller devices */
+    @media (max-width: 600px) {
+      .speakers {
+        gap: 10px;
+      }
+      .speaker {
+        max-width: 100%;
+      }
+      .speaker img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
     /********************************************
      * TYPEWRITER STYLES
      ********************************************/
@@ -469,6 +524,43 @@
           aria-hidden="false"
           tabindex="0">
         </iframe>
+      </div>
+    </section>
+
+    <!--SPEAKERS-->
+    <section id="speakers">
+      <h2>Speakers & Contributors</h2>
+      <div class="speakers">
+        <div class="speaker">
+          <img src="assets/img/speakers/Sandy_Pentland.jpeg" alt="Sandy Pentland Headshot">
+          <h3>Sandy Pentland</h3>
+          <p>Professor, MIT & Stanford</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Robert_Mahari.jpeg" alt="Robert Mahari Headshot">
+          <h3>Robert Mahari</h3>
+          <p>Computation Law, Researcher, MIT</p>
+        </div>
+
+      
+        <div class="speaker">
+          <img src="assets/img/speakers/Vivek_Sharma.jpeg" alt="Vivek Sharma Headshot">
+          <h3>Vivek Sharma</h3>
+          <p>Researcher, MIT</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Tobin_South.jpeg" alt="Tobin South Headshot">
+          <h3>Tobin South</h3>
+          <p>AI Security, Researcher, MIT</p>
+        </div>
+      
+        <div class="speaker">
+          <img src="assets/img/speakers/Gabriele_Mazzini.jpg" alt="Gabriele Mazzini Headshot">
+          <h3>Gabriele Mazzini</h3>
+          <p>Lead Author of EU AI Act</p>
+        </div>
       </div>
     </section>
 
