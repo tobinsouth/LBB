@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Ensures proper mobile zoom & scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leading Beyond Boundaries 2025</title>
+  <meta name="description" content="Join the Leading Beyond Boundaries event in Davos 2025, where global innovators, thinkers, and policymakers convene to shape the future of technology and humanity." />
+  <link rel="icon" type="image/png" href="assets/img/lbb.png" />
+  <style>
+    /********************************************
+     * RESET & GLOBAL
+     ********************************************/
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --background-color: #F4F5F6;
+      --light-accent: #ecf7ff;
+      --dark-accent: #459bfe;
+      --card-color: #FDFDFD;
+      --main-font: sans-serif;
+    }
+
+    body {
+      font-family: var(--main-font);
+      color: #333;
+      background: linear-gradient(180deg, var(--light-accent) 0%, var(--background-color) 15%);
+    }
+
+    /********************************************
+     * NAVBAR
+     ********************************************/
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      transition: background-color 0.3s, border-bottom 0.3s;
+      z-index: 999;
+    }
+
+    .navbar.scrolled {
+      background-color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(5px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links a {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      text-decoration: none;
+      color: #5b5b5b;
+      font-weight: 500;
+      font-size: 1rem;
+      font-display: bold;
+    }
+
+    .nav-links a:hover {
+      color: var(--dark-accent);
+    }
+
+    /********************************************
+     * CONTAINER & GENERAL SPACING
+     ********************************************/
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px 2rem 2rem 2rem; /* top padding avoids overlap under navbar */
+    }
+
+    section {
+      padding: 1rem 0;
+    }
+
+    section h2 {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      line-height: 1.3;
+    }
+
+    section p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    section hr {
+      border: 0;
+      height: 1px;
+      background: #D3D3D4;
+      margin: 1rem;
+    }
+
+    /********************************************
+     * HERO SECTION
+     ********************************************/
+    /* New Hero Video Container */
+    .hero-video-container {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden; /* Hides any overflow from border radius */
+      margin: 1rem 0;  /* Adjust margin as needed */
+    }
+
+    /* The video should fill the container width, maintain aspect ratio, 
+      and be clipped to the rounded corners */
+    .hero-video {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover; 
+      border-radius: 12px;
+    }
+
+    /* Overlay that sits on top of the video */
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Optionally, add a semi-transparent dark overlay for better text contrast */
+      /* background: rgba(0, 0, 0, 0.3); */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none; /* so clicks pass through to underlying elements if needed */
+    }
+
+    /* Overlay text content styling */
+    .hero-overlay-content {
+      color: #fff; /* Adjust text color to your preference */
+      text-align: center;
+      z-index: 1; /* Make sure text sits on top of the video */
+      pointer-events: none; 
+    }
+
+    .hero-overlay-content h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-overlay-content h2 {
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      font-weight: 400; /* Slightly lighter subtitle */
+    }
+
+    /* Responsive considerations */
+    @media (max-width: 600px) {
+      .hero-overlay-content h1 {
+        font-size: 1.8rem;
+      }
+      .hero-overlay-content h2 {
+        font-size: 1.2rem;
+      }
+    }
+
+    /********************************************
+     * CARD STYLES
+     ********************************************/
+    .card {
+      background: var(--card-color);
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .lumacard {
+      background: var(--card-color);
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      min-width: 200px;
+      transition: border 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .lumacard:hover {
+      border: 0.5px solid #D3D3D4;
+      box-shadow: 0 0px 10px #D3D3D4;
+    }
+
+    .lumacard h3 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .lumacard p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      color: #565656;
+    }
+
+    .lumacard button-div {
+      margin-top: auto; 
+      text-align: center;
+      width: 100%;
+    }
+
+    .lumacard button {
+      padding: 0.5rem 1rem;
+      background: var(--light-accent);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+    }
+
+    .lumaframe {
+      width:100%; min-height:475px; border: 1px solid #bfcbda88; border-radius: 15px;
+    }
+
+    /* Report tile button hover effect */
+    .report-tile-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(69, 155, 254, 0.4) !important;
+    }
+
+    /********************************************
+     * PARTNER LOGOS
+     ********************************************/
+    .partner-logo {
+      height: 100px;
+      width: auto;
+      padding: 1rem;
+    }
+
+    /* CSS: Speaker Grid */
+    .speakers {
+      /* display: flex;
+      flex-wrap: wrap; */
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      justify-content: center;
+      margin: 2rem auto;
+      max-width: 900px;   /* Optional max width */
+      padding: 0 1rem;   /* Some horizontal padding */
+    }
+
+    .speaker {
+      flex: 1 1 200px;
+      max-width: 280px;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .speaker img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      filter: grayscale(60%);
+      margin-bottom: 0.8rem;
+    }
+
+    .speaker h3 {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .speaker p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0;
+    }
+
+    /* Example Media Query for smaller devices */
+    @media (max-width: 600px) {
+      .speakers {
+        gap: 10px;
+      }
+      .speaker {
+        max-width: 100%;
+      }
+      .speaker img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    /********************************************
+     * TYPEWRITER STYLES
+     ********************************************/
+    #typewriter {
+      display: inline-block;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      /* Use clamp to keep typewriter text from shrinking too much on mobile */
+      /* font-size: clamp(1rem, 3vw, 1.3rem); */
+      line-height: 1.4;
+    }
+
+    #cursor {
+      animation: blink 0.8s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /********************************************
+     * RESPONSIVE MEDIA QUERIES
+     ********************************************/
+    @media (max-width: 600px) {
+
+      /* Navbar links slightly smaller on small screens */
+      .nav-links a {
+        margin-left: 1rem;
+        font-size: 0.9rem;
+      }
+
+      /* Slightly tighten spacing for the container */
+      .container {
+        padding: 30px 1rem 1rem 1rem;
+      }
+
+      section h2 {
+        font-size: 1.2rem;
+      }
+
+      section p {
+        font-size: 0.95rem;
+      }
+
+      /* Hero elements: stacked columns if needed */
+      .hero {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-image {
+        /* Remove forced square aspect-ratio on tiny screens */
+        aspect-ratio: auto;
+        /* Ensure it's never too small */
+        min-width: 250px;
+        min-height: 250px;
+      }
+
+      .hero-text, .hero-image {
+        flex-basis: 100%;
+        max-width: 100%;
+      }
+
+      /* The lumacards in a single column if screen is very narrow */
+      #themes div {
+        grid-template-columns: 1fr;
+      }
+
+      .lumaframe {
+        min-height: 500px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="navbar" id="navbar">
+    <div class="nav-links">
+      <a href="#agenda">Events</a>
+      <a href="#partners">Partners</a>
+      <a href="2025.html" style="white-space: nowrap;">2025</a>
+      <a href="/assets/files/LBB_Report_2024.pdf" style="white-space: nowrap;">2024</a>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+
+    <!-- HERO SECTION -->
+    <section>
+      <a href="assets/files/LBB_2025_Report.pdf" target="_blank" class="lumacard" style="display: block; text-align: center; padding: 4rem 2rem; background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('assets/img/2025_background.jpg'); background-size: cover; background-position: center; text-decoration: none;">
+        <h1 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; color: #333;">Leading Beyond Boundaries</h1>
+        <h2 style="font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 400; margin-bottom: 2.5rem; color: #333;">Davos 2025</h2>
+        <div class="report-tile-button" style="padding: 1rem 2.5rem; background: var(--dark-accent); color: white; border-radius: 8px; display: inline-block; font-size: 1.1rem; font-weight: 600; box-shadow: 0 4px 12px rgba(69, 155, 254, 0.3); transition: transform 0.2s, box-shadow 0.2s;">
+          📄 Read the Report
+        </div>
+      </a>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section id="overview">
+      <h2>
+        Leading Beyond Boundaries: <span id="typewriter"></span><span id="cursor">|</span>
+      </h2>
+      <p>
+        Leading Beyond Boundaries was born at the 2024 World Economic Forum to convene forward thinking 
+        researchers, business leaders and policy makers to tackle future-oriented questions around AI, justice,
+        healthcare and other topics of societal importance.
+      </p>
+
+      <p>
+        In 2025, Leading Beyond Boundaries will once again bring together visionaries to explore humanity's
+        technological future in Davos.
+      </p>
+        
+      <p>
+        The goal of these discussions is to highlight key questions for academics, practitioners, and regulators.
+        In addition to hosting invite-only roundtables, Leading Beyond Boundaries is also organizing a series of public panels and
+        a Science Soiree to provide more opportunities for deep discussions. <div id="agenda"></div>
+      </p>
+    
+    </section>
+
+    <!-- AGENDA -->
+    <section>
+      <div class="lumacard">
+        <h2>January 21: Shaping the Future of Justice and Legal Practice</h2>
+        <p>
+          The contemporary legal system is struggling to meet the needs of society. Most people cannot afford legal representation, leading to a widening access to justice gap, while legal costs pose significant challenges for businesses of all sizes. Historically slow to adopt new technologies, the legal profession now stands at the threshold of transformation with the emergence of large language models and AI. 
+        </p>
+        <p>
+          We are on the cusp of a fundamental shift in legal practice that requires collaboration between legal professionals and technologists. This event brings together global leaders from the legal industry and pioneering technologists to explore the future of the legal profession. We will address open problems, discuss innovative solutions, and chart strategies for the responsible deployment of AI in law.
+        </p>
+      </div>
+      
+      <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
+        <iframe
+          src="https://lu.ma/embed/event/evt-IF7XlhFyvED0ZGG/simple"
+          frameborder="0"
+          class="lumaframe"
+          allowfullscreen=""
+          aria-hidden="false"
+          tabindex="0">
+        </iframe>
+      </div>
+
+      <hr/>
+
+      <div class="lumacard" >
+        <h2>January 21: Science Soiree</h2>
+        <p>
+          Calling all scientists, engineers and researchers!
+
+          Join us at the St. Johann's Church to mingle, network, and sample local delicacies. 
+        </p>
+      </div>
+      <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
+        <iframe
+          src="https://lu.ma/embed/event/evt-cp31vSioYD4rjvb/simple"
+          frameborder="0"
+          class="lumaframe"
+          allowfullscreen=""
+          aria-hidden="false"
+          tabindex="0">
+        </iframe>
+      </div>
+
+      <hr/>
+
+      <div class="lumacard">
+        <h2>January 22: AI and Personalized Health</h2>
+        <p>
+          Healthcare stands at the cusp of transformation, driven by advancements in artificial intelligence and personalized health technology. Shifting from a reactive to a proactive model, we can leverage predictive analytics, wearable devices, and seamless data-sharing to enable early intervention and tailored care.
+        </p>
+        <p>
+          The COVID-19 pandemic revealed the urgent need for preemptive healthcare strategies, highlighting gaps in global coordination and response. Empowering individuals through participatory models, fostering private-sector collaboration, and adopting privacy-preserving technologies can unlock innovation while safeguarding personal data.
+        </p>
+        <p>
+          This roundtable and panel brings together experts to explore how AI-driven solutions can redefine healthcare delivery, paving the way for better outcomes for individuals and societies.
+        </p>
+      </div>
+
+      <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
+        <iframe
+          src="https://lu.ma/embed/event/evt-j25wr5FgpC9aDRe/simple"
+          frameborder="0"
+          class="lumaframe"
+          allowfullscreen=""
+          aria-hidden="false"
+          tabindex="0">
+        </iframe>
+      </div>
+
+      <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
+        <iframe
+          src="https://lu.ma/embed/event/evt-5FBOYyfFPNJuWn5/simple"
+          frameborder="0"
+          class="lumaframe"
+          allowfullscreen=""
+          aria-hidden="false"
+          tabindex="0">
+        </iframe>
+      </div>
+
+      <hr/>
+
+      <div class="lumacard">
+        <h2>January 23: Privacy and the Rise of Agentic AI</h2>
+        <p>
+          As artificial intelligence progresses into the era of agentic systems—autonomous agents capable of near-human cognition—the stakes for security and privacy have never been higher. These systems leverage advanced AI techniques, including large language models, machine learning, and reinforcement learning, to operate with minimal human supervision, driving profound transformations across industries. However, the dynamic nature of agentic AI introduces complex challenges for privacy, trust, and individual rights.
+        </p>
+        <p>
+          This roundtable and panel brings together leaders from academia, industry, and government to explore the intersection of agentic AI and privacy. Discussions will focus on advancing privacy-enhancing technologies (PETs), harmonizing global regulations, and breaking data silos in sectors like healthcare and finance. By addressing key challenges and fostering collaboration, we aim to chart a path for ethical AI development that balances innovation with the protection of individual rights.
+        </p>
+      </div>
+
+      <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
+        <iframe
+          src="https://lu.ma/embed/event/evt-ke27oKkytUDC9od/simple"
+          frameborder="0"
+          class="lumaframe"
+          allowfullscreen=""
+          aria-hidden="false"
+          tabindex="0">
+        </iframe>
+      </div>
+      
+      <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
+        <iframe
+          src="https://lu.ma/embed/event/evt-8Ef4V33b64ph68H/simple"
+          frameborder="0"
+          class="lumaframe"
+          allowfullscreen=""
+          aria-hidden="false"
+          tabindex="0">
+        </iframe>
+      </div>
+    </section>
+
+     <section id="speakers">
+      <h2>Speakers & Contributors</h2>
+      
+      <div class="speakers">
+        <div class="speaker">
+          <img src="assets/img/speakers/Yaniv_Altshuler.jpg" alt="Headshot">
+          <h3>Yaniv Altshuler</h3>
+          <p>Researcher, MIT Media Lab and MIT Connection Science Fellow</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Julia_Apostle.jpg" alt="Headshot">
+          <h3>Julia Apostle</h3>
+          <p>Partner, Orrick, Herrington &amp; Sutcliffe LLP</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Pablo_Arredondo.webp" alt="Headshot">
+          <h3>Pablo Arredondo</h3>
+          <p>Vice President, CoCounsel, Thomson Reuters</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Elliott_Ash.jpg" alt="Headshot">
+          <h3>Elliott Ash</h3>
+          <p>Professor, ETH Zurich</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Ami_Bhatt.jpeg" alt="Headshot">
+          <h3>Ami Bhatt</h3>
+          <p>Chief Innovation Officer, American College of Cardiology; Associate Professor, Harvard Med</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Laura_Brounstein.jpg" alt="Headshot">
+          <h3>Laura Brounstein</h3>
+          <p>Founder, Brounstein Ventures and Strategic Advisor, Biden/Harris ‘24</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Erik_Brynjolfsson.jpg" alt="Headshot">
+          <h3>Erik Brynjolfsson</h3>
+          <p>Professor, Stanford HAI</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Yejin_Choi.jpeg" alt="Headshot">
+          <h3>Yejin Choi</h3>
+          <p>Professor, Stanford HAI</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Guendalina_Cobianchi.jpeg" alt="Headshot">
+          <h3>Guendalina Cobianchi</h3>
+          <p>SVP Strategic Analytics &amp; Business Insights, V-Nova Ltd</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Daniel_Dobos.jpg" alt="Headshot">
+          <h3>Daniel Dobos</h3>
+          <p>Research Director, Swisscom</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Javier_Fernandez-Marques.png" alt="Headshot">
+          <h3>Javier Fernandez-Marques</h3>
+          <p>Lead Research Scientist, Flower Labs</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Camille_Francois.jpeg" alt="Headshot">
+          <h3>Camille Francois</h3>
+          <p>Professor, Columbia University</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Martin_Gajek.jpg" alt="Headshot">
+          <h3>Martin Gajek</h3>
+          <p>Director ML and Applied Research, Thomson Reuters</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Jeannette_Gorzala.jpeg" alt="Headshot">
+          <h3>Jeannette Gorzala</h3>
+          <p>CEO ACT AI NOW, Vice Chair AI Board Austrian Government</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Ori_Goshen.jpeg" alt="Headshot">
+          <h3>Ori Goshen</h3>
+          <p>Co-Founder, Co-CEO, AI21 Labs</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Peter_Grabowski.jpeg" alt="Headshot">
+          <h3>Peter Grabowski</h3>
+          <p>Lead, Google AI Agents</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Dazza_Greenwood.jpg" alt="Headshot">
+          <h3>Dazza Greenwood</h3>
+          <p>Executive Director, Law.MIT</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Robert_Grey.jpg" alt="Headshot">
+          <h3>Robert Grey</h3>
+          <p>Chancellor, University of Warsaw</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Jens_Groth.jpeg" alt="Headshot">
+          <h3>Jens Groth</h3>
+          <p>Chief Scientist, Nexus</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Nicholas_Hudson.jpeg" alt="Headshot">
+          <h3>Nicholas Hudson</h3>
+          <p>Director, Strategic Planning, IQVIA</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Aditi_Joshi.jpeg" alt="Headshot">
+          <h3>Aditi Joshi</h3>
+          <p>Open Source Lead, Google</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Jared_Josleyn.jpeg" alt="Headshot">
+          <h3>Jared Josleyn</h3>
+          <p>SVP, Global Head of Digital Health and Emerging Disruptive Growth Exploration (E.D.G.E.), Sanofi</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Edward_Jung.jpg" alt="Headshot">
+          <h3>Edward Jung</h3>
+          <p>Co-Founder and CTO, Intellectual Ventures</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Daniel_Kraft.jpeg" alt="Headshot">
+          <h3>Daniel Kraft</h3>
+          <p>Founder and Chair, NextMed Health</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Seema_Kumar.png" alt="Headshot">
+          <h3>Seema Kumar</h3>
+          <p>CEO, Deepfield Cure</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Joan_Larovere.jpeg" alt="Headshot">
+          <h3>Joan LaRovere</h3>
+          <p>SVP and interim Chief Medical Officer, Boston Children’s Hospital</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/James_Landay.png" alt="Headshot">
+          <h3>James A Landay</h3>
+          <p>Professor, Stanford</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Robert_Mahari.jpeg" alt="Headshot">
+          <h3>Robert Mahari</h3>
+          <p>Associate Director, Stanford CodeX Center</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Samuele_Marro.jpeg" alt="Headshot">
+          <h3>Samuele Marro</h3>
+          <p>Researcher, Oxford University</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Gabriele_Mazzini.jpeg" alt="Headshot">
+          <h3>Gabriele Mazzini</h3>
+          <p>Former AI Act Team Leader, European Commission</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Nitin_Mittal.webp" alt="Headshot">
+          <h3>Nitin Mittal</h3>
+          <p>Principal, Deloitte, US AI Strategic Growth Offering Leader</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Anne-Sophie_Morand.jpeg" alt="Headshot">
+          <h3>Anne-Sophie Morand</h3>
+          <p>Data &amp; AI Governance Counsel, Swisscom</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Ben_Moskowitz.webp" alt="Headshot">
+          <h3>Ben Moskowitz</h3>
+          <p>Vice President, Innovation Lab</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Rika_Nakazawa.webp" alt="Headshot">
+          <h3>Rika Nakazawa</h3>
+          <p>Group Vice President, NTT Data Inc</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Alojzy_Nowak.jpg" alt="Headshot">
+          <h3>Alojzy Nowak</h3>
+          <p>Rector, University of Warsaw</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Scott_O'Hair.jpeg" alt="Headshot">
+          <h3>Scott O'Hair</h3>
+          <p>CEO, Antenna Ventures</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Sandy_Pentland.jpeg" alt="Headshot">
+          <h3>Sandy Pentland</h3>
+          <p>Professor, Stanford HAI &amp; MIT</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Ayisha_Piotti.jpg" alt="Headshot">
+          <h3>Ayisha Piotti</h3>
+          <p>Managing Director, RegHorizon and ETH Zurich</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Amit_Pradhan.png" alt="Headshot">
+          <h3>Amit Pradhan</h3>
+          <p>CEO, Rainfall</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Hossein_Rahnama.jpg" alt="Headshot">
+          <h3>Hossein Rahnama</h3>
+          <p>Visiting Professor, MIT</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Ramesh_Raskar.png" alt="Headshot">
+          <h3>Ramesh Raskar</h3>
+          <p>Associate Professor, MIT Media Lab</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Roland_Scharrer.jpg" alt="Headshot">
+          <h3>Roland Scharrer</h3>
+          <p>Partner &amp; Managing Director, Kearney</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Lee_Schneider.jpg" alt="Headshot">
+          <h3>Lee Schneider</h3>
+          <p>General Counsel, Ava Labs</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Vivek_Sharma.jpeg" alt="Headshot">
+          <h3>Vivek Sharma</h3>
+          <p>Scientist, Ex MIT Media Lab, Harvard Med</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Abhishek_Singh.png" alt="Headshot">
+          <h3>Abhishek Singh</h3>
+          <p>Researcher, MIT Media Lab</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Richard_Socher.jpg" alt="Headshot">
+          <h3>Richard Socher</h3>
+          <p>CEO/Founder, You.Com</p>
+        </div>
+
+        <div class="speaker">
+          <img src="assets/img/speakers/Tobin_South.jpeg" alt="Headshot">
+          <h3>Tobin South</h3>
+          <p>Fellow, Stanford University &amp; Head of AI Agents and MCP, WorkOS</p>
+        </div>
+      
+      </div>
+    </section>
+
+
+    <!-- WHY WISDOM HOUSE -->
+    <section>
+      <h2>About the Venue</h2>
+      <p>
+        Leading Beyond Boundaries is partnering with <a style="text-decoration: underline; color: inherit;" href="https://broadlights.org/wisdomhousedavos/">Wisdom House</a>
+        to make this event possible.
+      </p>
+      <p>
+        All events are taking place at the historic St. Johann Church which dates to the 13th century when it was built by Walser settlers as the spiritual and communal center of the valley. 
+        The Church features a 71.2-meter tower from 1481 and Antonio Augusto Giacometti's incredible "Paradise"-themed stained glass windows.
+      </p>
+    </section>
+
+    <!-- PARTNERS -->
+    <section id="partners">
+      <h2>Partners</h2>
+      <p>
+        Leading Beyond Boundaries is a collaboration across world-leading academic institutions and
+        organizations, and is made possible by the support of our partners.
+      </p>
+      <img class="partner-logo" src="assets/img/partners/MIT_ML_Logo_K_RGB.png" alt="MIT Media Lab" />
+      <img class="partner-logo" style="width: 300px;" src="assets/img/partners/hls.svg" alt="Harvard Center on the Legal Profession" />
+      <img class="partner-logo" src="assets/img/partners/S-DEL-condensed-2color.png" alt="Stanford Digital Economy Lab" />
+      <img class="partner-logo" style="width: 250px;" src="assets/img/partners/alphabiome.png" alt="Alphabiome" />
+      <img class="partner-logo" src="assets/img/partners/connection-logo.png" style="height: 80px;" alt="MIT Connection Science" />
+      <img class="partner-logo" src="assets/img/partners/wisdom-house.png" style="height: 80px;" alt="Wisdom House" />
+      <img class="partner-logo" src="assets/img/partners/Thomson Reuters.jpg" style="height: 120px;" alt="Thomson Reuters" />
+      <img class="partner-logo" src="assets/img/partners/antenna_logo.png" style="height: 150px;" alt="Antenna VC" />      
+      <p>
+        If your organization is interested in exploring partnership opportunities with us, please
+        contact us at
+        <a href="mailto:robert@mahari.ch" style="color: var(--dark-accent);">robert@mahari.ch</a>.
+      </p>
+    </section>
+  </main>
+
+  <!-- SCRIPT FOR NAVBAR SCROLL EFFECT -->
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+
+  <!-- SCRIPT FOR TYPEWRITER EFFECT -->
+  <script>
+    const text = "Where Innovation Meets Human Purpose";
+    const typewriterElement = document.getElementById('typewriter');
+    let index = 0;
+
+    function typeWriter() {
+      if (index < text.length) {
+        typewriterElement.textContent += text[index];
+        index++;
+        setTimeout(typeWriter, 120);
+      }
+    }
+    typeWriter();
+  </script>
+</body>
+</html>

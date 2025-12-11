@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <!-- Ensures proper mobile zoom & scaling -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leading Beyond Boundaries 2025</title>
-  <meta name="description" content="Join the Leading Beyond Boundaries event in Davos 2025, where global innovators, thinkers, and policymakers convene to shape the future of technology and humanity." />
+  <title>Leading Beyond Boundaries 2026</title>
+  <meta name="description" content="Join the Leading Beyond Boundaries events in Davos 2026, where global innovators, thinkers, and policymakers convene to shape the future of technology and humanity." />
   <link rel="icon" type="image/png" href="assets/img/lbb.png" />
   <style>
     /********************************************
@@ -61,6 +61,7 @@
       font-weight: 500;
       font-size: 1rem;
       font-display: bold;
+      white-space: nowrap;
     }
 
     .nav-links a:hover {
@@ -103,46 +104,39 @@
     /********************************************
      * HERO SECTION
      ********************************************/
-    /* New Hero Video Container */
     .hero-video-container {
       position: relative;
       width: 100%;
       border-radius: 12px;
-      overflow: hidden; /* Hides any overflow from border radius */
-      margin: 1rem 0;  /* Adjust margin as needed */
+      overflow: hidden;
+      margin: 1rem 0;
     }
 
-    /* The video should fill the container width, maintain aspect ratio, 
-      and be clipped to the rounded corners */
     .hero-video {
       width: 100%;
       height: auto;
       display: block;
-      object-fit: cover; 
+      object-fit: cover;
       border-radius: 12px;
     }
 
-    /* Overlay that sits on top of the video */
     .hero-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      /* Optionally, add a semi-transparent dark overlay for better text contrast */
-      /* background: rgba(0, 0, 0, 0.3); */
       display: flex;
       justify-content: center;
       align-items: center;
-      pointer-events: none; /* so clicks pass through to underlying elements if needed */
+      pointer-events: none;
     }
 
-    /* Overlay text content styling */
     .hero-overlay-content {
-      color: #fff; /* Adjust text color to your preference */
+      color: #fff;
       text-align: center;
-      z-index: 1; /* Make sure text sits on top of the video */
-      pointer-events: none; 
+      z-index: 1;
+      pointer-events: none;
     }
 
     .hero-overlay-content h1 {
@@ -152,10 +146,9 @@
 
     .hero-overlay-content h2 {
       font-size: clamp(1.2rem, 4vw, 2rem);
-      font-weight: 400; /* Slightly lighter subtitle */
+      font-weight: 400;
     }
 
-    /* Responsive considerations */
     @media (max-width: 600px) {
       .hero-overlay-content h1 {
         font-size: 1.8rem;
@@ -174,52 +167,54 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
-    .lumacard {
+    /********************************************
+     * AGENDA TILES
+     ********************************************/
+    .agenda-day {
+      margin-bottom: 2rem;
+    }
+
+    .agenda-day h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      color: #444;
+    }
+
+    .agenda-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .agenda-card {
       background: var(--card-color);
       border-radius: 12px;
-      padding: 1rem;
+      padding: 1rem 1.2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
       display: flex;
       flex-direction: column;
-      min-width: 200px;
-      transition: border 0.3s, box-shadow 0.3s;
-      text-decoration: none;
-      color: inherit;
+      transition: box-shadow 0.2s, transform 0.2s;
     }
 
-    .lumacard:hover {
-      border: 0.5px solid #D3D3D4;
-      box-shadow: 0 0px 10px #D3D3D4;
+    .agenda-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
     }
 
-    .lumacard h3 {
-      font-size: 1rem;
-      margin-bottom: 1rem;
+    .agenda-card h4 {
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
     }
 
-    .lumacard p {
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-      color: #565656;
-    }
-
-    .lumacard button-div {
-      margin-top: auto; 
-      text-align: center;
-      width: 100%;
-    }
-
-    .lumacard button {
-      padding: 0.5rem 1rem;
-      background: var(--light-accent);
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
+    .agenda-meta {
       font-size: 0.9rem;
-      transition: background-color 0.2s;
+      color: #777;
+      margin-bottom: 0.5rem;
     }
 
-    .lumaframe {
-      width:100%; min-height:475px; border: 1px solid #bfcbda88; border-radius: 15px;
+    .agenda-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
     }
 
     /********************************************
@@ -231,17 +226,15 @@
       padding: 1rem;
     }
 
-    /* CSS: Speaker Grid */
+    /* Speaker Grid (unchanged, in case you re-use it later) */
     .speakers {
-      /* display: flex;
-      flex-wrap: wrap; */
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 20px;
       justify-content: center;
       margin: 2rem auto;
-      max-width: 900px;   /* Optional max width */
-      padding: 0 1rem;   /* Some horizontal padding */
+      max-width: 900px;
+      padding: 0 1rem;
     }
 
     .speaker {
@@ -272,7 +265,6 @@
       margin-bottom: 0;
     }
 
-    /* Example Media Query for smaller devices */
     @media (max-width: 600px) {
       .speakers {
         gap: 10px;
@@ -293,8 +285,6 @@
       display: inline-block;
       white-space: pre-wrap;
       word-wrap: break-word;
-      /* Use clamp to keep typewriter text from shrinking too much on mobile */
-      /* font-size: clamp(1rem, 3vw, 1.3rem); */
       line-height: 1.4;
     }
 
@@ -312,14 +302,11 @@
      * RESPONSIVE MEDIA QUERIES
      ********************************************/
     @media (max-width: 600px) {
-
-      /* Navbar links slightly smaller on small screens */
       .nav-links a {
         margin-left: 1rem;
         font-size: 0.9rem;
       }
 
-      /* Slightly tighten spacing for the container */
       .container {
         padding: 30px 1rem 1rem 1rem;
       }
@@ -332,16 +319,13 @@
         font-size: 0.95rem;
       }
 
-      /* Hero elements: stacked columns if needed */
       .hero {
         flex-direction: column;
         align-items: center;
       }
 
       .hero-image {
-        /* Remove forced square aspect-ratio on tiny screens */
         aspect-ratio: auto;
-        /* Ensure it's never too small */
         min-width: 250px;
         min-height: 250px;
       }
@@ -351,26 +335,21 @@
         max-width: 100%;
       }
 
-      /* The lumacards in a single column if screen is very narrow */
-      #themes div {
+      .agenda-grid {
         grid-template-columns: 1fr;
-      }
-
-      .lumaframe {
-        min-height: 500px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+   <!-- NAV -->
   <div class="navbar" id="navbar">
     <div class="nav-links">
       <a href="#agenda">Events</a>
       <a href="#partners">Partners</a>
+      <a href="2025.html" style="white-space: nowrap;">2025</a>
       <a href="/assets/files/LBB_Report_2024.pdf" style="white-space: nowrap;">2024</a>
-      <a href="/assets/files/LBB_2025_Report.pdf" style="white-space: nowrap;">2025 Report</a>
     </div>
   </div>
 
@@ -387,14 +366,12 @@
         class="hero-video"
       >
         <source src="assets/videos/mountain.mp4" type="video/mp4" />
-        <!-- Optionally provide a fallback image or other content here -->
       </video>
     
-      <!-- Overlay text container -->
       <div class="hero-overlay">
         <div class="hero-overlay-content">
           <h1>Leading Beyond Boundaries</h1>
-          <h2>Davos 2025</h2>
+          <h2>Davos 2026</h2>
         </div>
       </div>
     </section>
@@ -405,440 +382,137 @@
         Leading Beyond Boundaries: <span id="typewriter"></span><span id="cursor">|</span>
       </h2>
       <p>
-        Leading Beyond Boundaries was born at the 2024 World Economic Forum to convene forward thinking 
-        researchers, business leaders and policy makers to tackle future-oriented questions around AI, justice,
-        healthcare and other topics of societal importance.
+        Leading Beyond Boundaries was born at the 2024 World Economic Forum to convene forward-thinking 
+        researchers, business leaders, and policymakers around future-oriented questions in AI, justice,
+        healthcare, and other domains of societal importance.
       </p>
 
       <p>
-        In 2025, Leading Beyond Boundaries will once again bring together visionaries to explore humanity's
+        In 2026, Leading Beyond Boundaries will once again bring together visionaries to explore humanity's
         technological future in Davos.
       </p>
         
       <p>
-        The goal of these discussions is to highlight key questions for academics, practitioners, and regulators.
-        In addition to hosting invite-only roundtables, Leading Beyond Boundaries is also organizing a series of public panels and
-        a Science Soiree to provide more opportunities for deep discussions. <div id="agenda"></div>
+        The goal of these discussions is to surface the key questions that should guide academic, corporate,
+        and regulatory agendas in the year ahead. In addition to invite-only roundtables, we host public
+        sessions and informal gatherings designed for deep, cross-disciplinary conversation.
       </p>
-    
     </section>
 
-    <!-- AGENDA -->
-    <section>
-      <div class="lumacard">
-        <h2>January 21: Shaping the Future of Justice and Legal Practice</h2>
-        <p>
-          The contemporary legal system is struggling to meet the needs of society. Most people cannot afford legal representation, leading to a widening access to justice gap, while legal costs pose significant challenges for businesses of all sizes. Historically slow to adopt new technologies, the legal profession now stands at the threshold of transformation with the emergence of large language models and AI. 
-        </p>
-        <p>
-          We are on the cusp of a fundamental shift in legal practice that requires collaboration between legal professionals and technologists. This event brings together global leaders from the legal industry and pioneering technologists to explore the future of the legal profession. We will address open problems, discuss innovative solutions, and chart strategies for the responsible deployment of AI in law.
-        </p>
-      </div>
-      
-      <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
-        <iframe
-          src="https://lu.ma/embed/event/evt-IF7XlhFyvED0ZGG/simple"
-          frameborder="0"
-          class="lumaframe"
-          allowfullscreen=""
-          aria-hidden="false"
-          tabindex="0">
-        </iframe>
-      </div>
+    <!-- AGENDA / TOPIC TILES -->
+    <section id="agenda">
+      <h2>2026 Topics & Roundtables</h2>
 
-      <hr/>
+      <div class="agenda-day">
+        <h3>January 20, 2026 — St. Johann Church</h3>
+        <div class="agenda-grid">
+          <article class="agenda-card">
+            <h4>Building Technical and Governance Guardrails for Loyal AI Agents</h4>
+            <p class="agenda-meta">12:00 – 13:00</p>
+            <p>
+              As AI agents become embedded in organizations and public life, this session explores what it
+              means for them to be durably “loyal” to people and institutions, not just obedient to prompts.
+              We will examine technical architectures and governance mechanisms that can make agentic systems
+              auditable, accountable, and aligned with evolving human interests.
+            </p>
+          </article>
 
-      <div class="lumacard" >
-        <h2>January 21: Science Soiree</h2>
-        <p>
-          Calling all scientists, engineers and researchers!
+          <article class="agenda-card">
+            <h4>AI as a Catalyst for the Global Digital Economy</h4>
+            <p class="agenda-meta">13:20 – 14:20</p>
+            <p>
+              AI is collapsing the transaction costs of globalization, rewiring supply chains, finance, and
+              trade. This roundtable asks how intelligent systems can broaden participation in the digital
+              economy—especially for smaller firms and emerging markets—while avoiding new forms of
+              concentration, data colonialism, and systemic fragility.
+            </p>
+          </article>
 
-          Join us at the St. Johann's Church to mingle, network, and sample local delicacies. 
-        </p>
-      </div>
-      <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
-        <iframe
-          src="https://lu.ma/embed/event/evt-cp31vSioYD4rjvb/simple"
-          frameborder="0"
-          class="lumaframe"
-          allowfullscreen=""
-          aria-hidden="false"
-          tabindex="0">
-        </iframe>
-      </div>
+          <article class="agenda-card">
+            <h4>The Future of Legal Practice: Strategic Implications of Legal AI</h4>
+            <p class="agenda-meta">14:40 – 15:40</p>
+            <p>
+              Legal AI is moving from document automation to genuine reasoning support. We will discuss how
+              law firms and in-house teams can treat AI as a source of strategic differentiation, how business
+              models and client expectations shift when analysis becomes data-driven, and what new forms of
+              trust, liability, and professional responsibility emerge.
+            </p>
+          </article>
 
-      <hr/>
-
-      <div class="lumacard">
-        <h2>January 22: AI and Personalized Health</h2>
-        <p>
-          Healthcare stands at the cusp of transformation, driven by advancements in artificial intelligence and personalized health technology. Shifting from a reactive to a proactive model, we can leverage predictive analytics, wearable devices, and seamless data-sharing to enable early intervention and tailored care.
-        </p>
-        <p>
-          The COVID-19 pandemic revealed the urgent need for preemptive healthcare strategies, highlighting gaps in global coordination and response. Empowering individuals through participatory models, fostering private-sector collaboration, and adopting privacy-preserving technologies can unlock innovation while safeguarding personal data.
-        </p>
-        <p>
-          This roundtable and panel brings together experts to explore how AI-driven solutions can redefine healthcare delivery, paving the way for better outcomes for individuals and societies.
-        </p>
+          <article class="agenda-card">
+            <h4>The Post-AGI University</h4>
+            <p class="agenda-meta">16:00 – 17:00</p>
+            <p>
+              When intelligence is abundant, what remains distinctively “university”? This session examines
+              how research, teaching, and institutional missions change in a world of AI tutors, automated
+              hypothesis generation, and synthetic data, and how we can preserve curiosity, integrity, and
+              meaningful credit for human scholars.
+            </p>
+          </article>
+        </div>
       </div>
 
-      <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
-        <iframe
-          src="https://lu.ma/embed/event/evt-j25wr5FgpC9aDRe/simple"
-          frameborder="0"
-          class="lumaframe"
-          allowfullscreen=""
-          aria-hidden="false"
-          tabindex="0">
-        </iframe>
-      </div>
+      <div class="agenda-day">
+        <h3>January 22, 2026 — St. Johann Church</h3>
+        <div class="agenda-grid">
+          <article class="agenda-card">
+            <h4>Personalized Healthcare and the AI-Enabled Healthspan</h4>
+            <p class="agenda-meta">14:40 – 15:40</p>
+            <p>
+              Advances in AI and multi-modal data promise not only longer lives, but more years in good health.
+              This roundtable explores how individualized models of risk and resilience can support anticipatory
+              care, what infrastructures are needed for equitable and privacy-preserving health data, and how
+              incentives must evolve so healthspan is extended for many, not just a few.
+            </p>
+          </article>
 
-      <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
-        <iframe
-          src="https://lu.ma/embed/event/evt-5FBOYyfFPNJuWn5/simple"
-          frameborder="0"
-          class="lumaframe"
-          allowfullscreen=""
-          aria-hidden="false"
-          tabindex="0">
-        </iframe>
-      </div>
-
-      <hr/>
-
-      <div class="lumacard">
-        <h2>January 23: Privacy and the Rise of Agentic AI</h2>
-        <p>
-          As artificial intelligence progresses into the era of agentic systems—autonomous agents capable of near-human cognition—the stakes for security and privacy have never been higher. These systems leverage advanced AI techniques, including large language models, machine learning, and reinforcement learning, to operate with minimal human supervision, driving profound transformations across industries. However, the dynamic nature of agentic AI introduces complex challenges for privacy, trust, and individual rights.
-        </p>
-        <p>
-          This roundtable and panel brings together leaders from academia, industry, and government to explore the intersection of agentic AI and privacy. Discussions will focus on advancing privacy-enhancing technologies (PETs), harmonizing global regulations, and breaking data silos in sectors like healthcare and finance. By addressing key challenges and fostering collaboration, we aim to chart a path for ethical AI development that balances innovation with the protection of individual rights.
-        </p>
-      </div>
-
-      <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
-        <iframe
-          src="https://lu.ma/embed/event/evt-ke27oKkytUDC9od/simple"
-          frameborder="0"
-          class="lumaframe"
-          allowfullscreen=""
-          aria-hidden="false"
-          tabindex="0">
-        </iframe>
-      </div>
-      
-      <div style="margin:auto; padding-top: 1rem; padding-bottom: 1rem;">
-        <iframe
-          src="https://lu.ma/embed/event/evt-8Ef4V33b64ph68H/simple"
-          frameborder="0"
-          class="lumaframe"
-          allowfullscreen=""
-          aria-hidden="false"
-          tabindex="0">
-        </iframe>
+          <article class="agenda-card">
+            <h4>Diamonds in Davos</h4>
+            <p class="agenda-meta">16:00 – 17:00</p>
+            <p>
+              Lab-grown diamonds and AI-designed materials are transforming luxury, geology, and global trade.
+              We will look at how computation reshapes production and provenance, how regulators and courts
+              should define and label diamonds, how to compare environmental and social footprints, and how
+              ideas of scarcity and authenticity evolve when crystals can be engineered on demand.
+            </p>
+          </article>
+        </div>
       </div>
     </section>
 
-     <section id="speakers">
-      <h2>Speakers & Contributors</h2>
-      
-      <div class="speakers">
-        <div class="speaker">
-          <img src="assets/img/speakers/Yaniv_Altshuler.jpg" alt="Headshot">
-          <h3>Yaniv Altshuler</h3>
-          <p>Researcher, MIT Media Lab and MIT Connection Science Fellow</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Julia_Apostle.jpg" alt="Headshot">
-          <h3>Julia Apostle</h3>
-          <p>Partner, Orrick, Herrington &amp; Sutcliffe LLP</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Pablo_Arredondo.webp" alt="Headshot">
-          <h3>Pablo Arredondo</h3>
-          <p>Vice President, CoCounsel, Thomson Reuters</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Elliott_Ash.jpg" alt="Headshot">
-          <h3>Elliott Ash</h3>
-          <p>Professor, ETH Zurich</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Ami_Bhatt.jpeg" alt="Headshot">
-          <h3>Ami Bhatt</h3>
-          <p>Chief Innovation Officer, American College of Cardiology; Associate Professor, Harvard Med</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Laura_Brounstein.jpg" alt="Headshot">
-          <h3>Laura Brounstein</h3>
-          <p>Founder, Brounstein Ventures and Strategic Advisor, Biden/Harris ‘24</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Erik_Brynjolfsson.jpg" alt="Headshot">
-          <h3>Erik Brynjolfsson</h3>
-          <p>Professor, Stanford HAI</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Yejin_Choi.jpeg" alt="Headshot">
-          <h3>Yejin Choi</h3>
-          <p>Professor, Stanford HAI</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Guendalina_Cobianchi.jpeg" alt="Headshot">
-          <h3>Guendalina Cobianchi</h3>
-          <p>SVP Strategic Analytics &amp; Business Insights, V-Nova Ltd</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Daniel_Dobos.jpg" alt="Headshot">
-          <h3>Daniel Dobos</h3>
-          <p>Research Director, Swisscom</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Javier_Fernandez-Marques.png" alt="Headshot">
-          <h3>Javier Fernandez-Marques</h3>
-          <p>Lead Research Scientist, Flower Labs</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Camille_Francois.jpeg" alt="Headshot">
-          <h3>Camille Francois</h3>
-          <p>Professor, Columbia University</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Martin_Gajek.jpg" alt="Headshot">
-          <h3>Martin Gajek</h3>
-          <p>Director ML and Applied Research, Thomson Reuters</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Jeannette_Gorzala.jpeg" alt="Headshot">
-          <h3>Jeannette Gorzala</h3>
-          <p>CEO ACT AI NOW, Vice Chair AI Board Austrian Government</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Ori_Goshen.jpeg" alt="Headshot">
-          <h3>Ori Goshen</h3>
-          <p>Co-Founder, Co-CEO, AI21 Labs</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Peter_Grabowski.jpeg" alt="Headshot">
-          <h3>Peter Grabowski</h3>
-          <p>Lead, Google AI Agents</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Dazza_Greenwood.jpg" alt="Headshot">
-          <h3>Dazza Greenwood</h3>
-          <p>Executive Director, Law.MIT</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Robert_Grey.jpg" alt="Headshot">
-          <h3>Robert Grey</h3>
-          <p>Chancellor, University of Warsaw</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Jens_Groth.jpeg" alt="Headshot">
-          <h3>Jens Groth</h3>
-          <p>Chief Scientist, Nexus</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Nicholas_Hudson.jpeg" alt="Headshot">
-          <h3>Nicholas Hudson</h3>
-          <p>Director, Strategic Planning, IQVIA</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Aditi_Joshi.jpeg" alt="Headshot">
-          <h3>Aditi Joshi</h3>
-          <p>Open Source Lead, Google</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Jared_Josleyn.jpeg" alt="Headshot">
-          <h3>Jared Josleyn</h3>
-          <p>SVP, Global Head of Digital Health and Emerging Disruptive Growth Exploration (E.D.G.E.), Sanofi</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Edward_Jung.jpg" alt="Headshot">
-          <h3>Edward Jung</h3>
-          <p>Co-Founder and CTO, Intellectual Ventures</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Daniel_Kraft.jpeg" alt="Headshot">
-          <h3>Daniel Kraft</h3>
-          <p>Founder and Chair, NextMed Health</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Seema_Kumar.png" alt="Headshot">
-          <h3>Seema Kumar</h3>
-          <p>CEO, Deepfield Cure</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Joan_Larovere.jpeg" alt="Headshot">
-          <h3>Joan LaRovere</h3>
-          <p>SVP and interim Chief Medical Officer, Boston Children’s Hospital</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/James_Landay.png" alt="Headshot">
-          <h3>James A Landay</h3>
-          <p>Professor, Stanford</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Robert_Mahari.jpeg" alt="Headshot">
-          <h3>Robert Mahari</h3>
-          <p>Associate Director, Stanford CodeX Center</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Samuele_Marro.jpeg" alt="Headshot">
-          <h3>Samuele Marro</h3>
-          <p>Researcher, Oxford University</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Gabriele_Mazzini.jpeg" alt="Headshot">
-          <h3>Gabriele Mazzini</h3>
-          <p>Former AI Act Team Leader, European Commission</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Nitin_Mittal.webp" alt="Headshot">
-          <h3>Nitin Mittal</h3>
-          <p>Principal, Deloitte, US AI Strategic Growth Offering Leader</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Anne-Sophie_Morand.jpeg" alt="Headshot">
-          <h3>Anne-Sophie Morand</h3>
-          <p>Data &amp; AI Governance Counsel, Swisscom</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Ben_Moskowitz.webp" alt="Headshot">
-          <h3>Ben Moskowitz</h3>
-          <p>Vice President, Innovation Lab</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Rika_Nakazawa.webp" alt="Headshot">
-          <h3>Rika Nakazawa</h3>
-          <p>Group Vice President, NTT Data Inc</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Alojzy_Nowak.jpg" alt="Headshot">
-          <h3>Alojzy Nowak</h3>
-          <p>Rector, University of Warsaw</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Scott_O'Hair.jpeg" alt="Headshot">
-          <h3>Scott O'Hair</h3>
-          <p>CEO, Antenna Ventures</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Sandy_Pentland.jpeg" alt="Headshot">
-          <h3>Sandy Pentland</h3>
-          <p>Professor, Stanford HAI &amp; MIT</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Ayisha_Piotti.jpg" alt="Headshot">
-          <h3>Ayisha Piotti</h3>
-          <p>Managing Director, RegHorizon and ETH Zurich</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Amit_Pradhan.png" alt="Headshot">
-          <h3>Amit Pradhan</h3>
-          <p>CEO, Rainfall</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Hossein_Rahnama.jpg" alt="Headshot">
-          <h3>Hossein Rahnama</h3>
-          <p>Visiting Professor, MIT</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Ramesh_Raskar.png" alt="Headshot">
-          <h3>Ramesh Raskar</h3>
-          <p>Associate Professor, MIT Media Lab</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Roland_Scharrer.jpg" alt="Headshot">
-          <h3>Roland Scharrer</h3>
-          <p>Partner &amp; Managing Director, Kearney</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Lee_Schneider.jpg" alt="Headshot">
-          <h3>Lee Schneider</h3>
-          <p>General Counsel, Ava Labs</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Vivek_Sharma.jpeg" alt="Headshot">
-          <h3>Vivek Sharma</h3>
-          <p>Scientist, Ex MIT Media Lab, Harvard Med</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Abhishek_Singh.png" alt="Headshot">
-          <h3>Abhishek Singh</h3>
-          <p>Researcher, MIT Media Lab</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Richard_Socher.jpg" alt="Headshot">
-          <h3>Richard Socher</h3>
-          <p>CEO/Founder, You.Com</p>
-        </div>
-
-        <div class="speaker">
-          <img src="assets/img/speakers/Tobin_South.jpeg" alt="Headshot">
-          <h3>Tobin South</h3>
-          <p>Fellow, Stanford University &amp; Head of AI Agents and MCP, WorkOS</p>
-        </div>
-      
-      </div>
-    </section>
-
-
-    <!-- WHY WISDOM HOUSE -->
+    <!-- ABOUT THE VENUE -->
     <section>
       <h2>About the Venue</h2>
       <p>
-        Leading Beyond Boundaries is partnering with <a style="text-decoration: underline; color: inherit;" href="https://broadlights.org/wisdomhousedavos/">Wisdom House</a>
+        Leading Beyond Boundaries is partnering with
+        <a style="text-decoration: underline; color: inherit;" href="https://broadlights.org/wisdomhousedavos/">Wisdom House</a>
         to make this event possible.
       </p>
       <p>
-        All events are taking place at the historic St. Johann Church which dates to the 13th century when it was built by Walser settlers as the spiritual and communal center of the valley. 
-        The Church features a 71.2-meter tower from 1481 and Antonio Augusto Giacometti's incredible "Paradise"-themed stained glass windows.
+        All events are taking place at the historic St. Johann Church, which dates to the 13th century when it
+        was built by Walser settlers as the spiritual and communal center of the valley. The church features a
+        71.2-meter tower from 1481 and Antonio Augusto Giacometti’s remarkable “Paradise”-themed stained glass
+        windows.
+      </p>
+    </section>
+
+    <!-- SPONSORS -->
+    <section id="sponsors">
+      <h2>Join as a Sponsor</h2>
+      <p>
+        Leading Beyond Boundaries is made possible by partners and sponsors who share a commitment to rigorous,
+        impact-oriented dialogue at the intersection of science, technology, and society.
+      </p>
+      <p>
+        Through our academic network across leading universities and research labs, we curate closed-door and
+        public roundtables that bring together scholars, industry leaders, and policymakers around concrete
+        strategic questions. In addition to our Davos program, we work with sponsors to design custom events
+        throughout the year.
+      </p>
+      <p>
+        If your organization is interested in sponsoring the 2026 series or commissioning a bespoke roundtable,
+        please contact
+        <a href="mailto:robert@mahari.ch" style="color: var(--dark-accent);">robert@mahari.ch</a>.
       </p>
     </section>
 
@@ -856,10 +530,9 @@
       <img class="partner-logo" src="assets/img/partners/connection-logo.png" style="height: 80px;" alt="MIT Connection Science" />
       <img class="partner-logo" src="assets/img/partners/wisdom-house.png" style="height: 80px;" alt="Wisdom House" />
       <img class="partner-logo" src="assets/img/partners/Thomson Reuters.jpg" style="height: 120px;" alt="Thomson Reuters" />
-      <img class="partner-logo" src="assets/img/partners/antenna_logo.png" style="height: 150px;" alt="Antenna VC" />      
+      <img class="partner-logo" src="assets/img/partners/antenna_logo.png" style="height: 150px;" alt="Antenna VC" />
       <p>
-        If your organization is interested in exploring partnership opportunities with us, please
-        contact us at
+        For partnership and sponsorship inquiries, please contact
         <a href="mailto:robert@mahari.ch" style="color: var(--dark-accent);">robert@mahari.ch</a>.
       </p>
     </section>
